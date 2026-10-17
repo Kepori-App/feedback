@@ -4,13 +4,24 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-6",
+      "title": "【联调测试】增加按标签搜索",
+      "description": "收藏很多作品后，希望通过标签快速找回内容。本条为搭建联调测试，不是真实用户建议。",
+      "nickname": "联调测试",
+      "createdAt": "2026-10-17T08:37:54.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": ""
+    },
+    {
       "id": "F-3",
       "title": "【联调测试】希望可以导出PDF",
       "description": "想把收藏的文章导出为PDF，发给同事阅读和打印。本条为搭建联调测试，不是真实用户建议。",
       "nickname": "联调测试",
       "createdAt": "2026-10-17T08:37:14.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
       "reply": ""
     },
@@ -21,8 +32,8 @@
       "nickname": "联调测试",
       "createdAt": "2026-10-17T08:36:57.000Z",
       "status": "待评估",
-      "validity": "待确认",
-      "duplicateOf": null,
+      "validity": "重复",
+      "duplicateOf": "F-1",
       "reply": ""
     },
     {
@@ -31,10 +42,10 @@
       "description": "夜间阅读时希望界面可以切换为深色背景，让眼睛更舒服。本条为搭建联调测试，不是真实用户建议。",
       "nickname": "联调测试",
       "createdAt": "2026-10-17T08:36:21.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "已采纳",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": ""
+      "reply": "已记录，感谢你的建议。（联调测试）"
     }
   ]
 }
