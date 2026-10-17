@@ -96,6 +96,18 @@
 .list-heading {flex-wrap:wrap;gap:8px}
 .list-heading #admin-filter,.list-heading #admin-category {max-width:114px;flex:1;min-width:0;font-size:11px;padding-left:7px;padding-right:29px;background-position:right 7px center}
 .list-heading #list-count {white-space:nowrap;margin-left:auto}
+.list-actions {display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px}
+.list-actions select {min-width:0;max-width:180px;font-size:12px;min-height:44px;flex:1}
+.list-actions .text-button {min-height:44px;flex-shrink:0}
+.export-dialog {width:min(440px,calc(100% - 32px))}
+.export-dialog .dialog-header {margin-bottom:8px}.export-dialog h2 {font-size:20px;margin:0}
+.export-dialog .icon-button {width:44px;height:44px;flex-shrink:0}
+.export-dialog>.subtle {margin:0 0 22px;line-height:1.8}
+.export-dialog .field {margin:16px 0;gap:8px}.export-dialog select {width:100%;max-width:none}
+.export-dialog .check-row {min-height:44px;margin:10px 0;line-height:1.7}
+.export-dialog .check-row input {flex-shrink:0}
+.export-dialog .dialog-footer {justify-content:space-between;gap:12px}
+@media(max-width:600px) {.export-dialog select {font-size:16px}}
 .choice-row {display:flex;flex-wrap:wrap;gap:8px}
 .choice-button {min-height:44px!important}
 .choice-button.active,.choice-button.active:disabled {background:var(--ink);border-color:var(--ink);color:var(--on-ink);opacity:1;font-weight:550}

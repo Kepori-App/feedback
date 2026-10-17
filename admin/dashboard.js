@@ -1,20 +1,23 @@
 import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-12";
 import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-12";
 import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-12";
+import { PROGRESS, progressLabel, selectFeedback } from "./feedback-query.js?v=20261017-15";
+import { connectFeedbackExport } from "./export-dialog.js?v=20261017-15";
 
 const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效", "回收站"], members: ["待发码", "全部用户", "已发码", "累计中"] };
 export function createDashboard(api) {
   const byId = id => document.getElementById(id);
-  let records = [], groups = [], view = "feedback", filter = "待确认", category = "all", selected = null, limit = 30;
+  let records = [], groups = [], view = "feedback", filter = "待确认", category = "all", progress = "all", selected = null, limit = 30;
   let stopped = false, refreshing = false, timer, summaryNumber, lastDetail = "", importRequested = false;
   const pending = new Map(), sending = new Set(), removers = [];
   const listen = (node, event, handler) => { node.addEventListener(event, handler); removers.push(() => node.removeEventListener(event, handler)); };
   const feedback = () => records.filter(record => record.kind === "feedback");
   const message = (text, error = false) => notice(byId("workspace-message"), text, error);
   const actions = { api, send, feedback: id => selectView("feedback", feedback().find(item => item.public_id === id)?.removed ? "回收站" : "全部反馈", id), member: email => selectView("members", "全部用户", email) };
+  const exportControl = connectFeedbackExport(() => ({ records: [...feedback()], query: { filter, category, progress, query: byId("admin-search").value } }), message);
 
   function selectView(nextView, nextFilter, selection = null) {
-    view = nextView; filter = nextFilter; category = "all"; selected = selection; limit = 30; lastDetail = "";
+    view = nextView; filter = nextFilter; category = "all"; progress = "all"; selected = selection; limit = 30; lastDetail = "";
     byId("admin-search").value = ""; render();
   }
   function choose(id) {
@@ -36,11 +39,15 @@ export function createDashboard(api) {
     }
     filterControl.value = filter;
     byId("admin-category").hidden = view !== "feedback"; byId("admin-category").value = category;
+    byId("feedback-list-actions").hidden = view !== "feedback";
+    const progressControl = byId("admin-progress");
+    if (progressControl.dataset.category !== category) {
+      progressControl.replaceChildren(...PROGRESS.map(value => { const option = el("option", "", progressLabel(value, category)); option.value = value; return option; }));
+      progressControl.dataset.category = category;
+    }
+    progressControl.value = progress;
     const query = byId("admin-search").value.trim().toLowerCase();
-    let visible = view === "feedback" ? items.filter(item => (category === "all" || item.category === category) &&
-      (filter === "回收站" ? item.removed : !item.removed && (filter === "全部反馈" || item.validity === filter)) &&
-      `${item.public_id} ${item.title} ${item.description} ${item.email}`.toLowerCase().includes(query))
-      .sort((a, b) => b.created_at.localeCompare(a.created_at)) : groups.filter(group =>
+    let visible = view === "feedback" ? selectFeedback(items, { filter, category, progress, query }) : groups.filter(group =>
       (filter === "全部用户" || (filter === "待发码" && group.valid >= 3 && !group.issued) ||
         (filter === "已发码" && group.issued) || (filter === "累计中" && group.valid < 3 && !group.issued)) && group.email.toLowerCase().includes(query));
     byId("list-title").textContent = filter === "待确认" ? "待确认的反馈" : filter;
@@ -140,9 +147,10 @@ export function createDashboard(api) {
   listen(byId("more"), "click", () => { limit += 30; render(); });
   listen(byId("admin-filter"), "change", event => { filter = event.target.value; selected = null; limit = 30; render(); });
   listen(byId("admin-category"), "change", event => { category = event.target.value; selected = null; limit = 30; render(); });
+  listen(byId("admin-progress"), "change", event => { progress = event.target.value; selected = null; limit = 30; render(); });
   listen(byId("admin-search"), "input", () => { limit = 30; selected = null; render(); });
   document.querySelectorAll("[data-view]").forEach(node => listen(node, "click", () => selectView(node.dataset.view, FILTERS[node.dataset.view][0])));
   byId("import").disabled = true;
   render(); refresh(false);
-  return { refresh, destroy() { stopped = true; clearTimeout(timer); removers.forEach(remove => remove()); pending.clear(); records = []; groups = []; byId("admin-list").replaceChildren(); byId("inspector").replaceChildren(); byId("metrics").replaceChildren(); byId("admin-search").value = ""; notice(byId("workspace-message")); } };
+  return { refresh, destroy() { stopped = true; clearTimeout(timer); exportControl.destroy(); removers.forEach(remove => remove()); pending.clear(); records = []; groups = []; byId("admin-list").replaceChildren(); byId("inspector").replaceChildren(); byId("metrics").replaceChildren(); byId("admin-search").value = ""; notice(byId("workspace-message")); } };
 }

@@ -9,9 +9,9 @@
   <title>反馈管理 · Kepori</title>
   <link rel="icon" href="../assets/app-icon.png">
   <link rel="stylesheet" href="../styles.css?v=20261017-12">
-  <link rel="stylesheet" href="./admin.css?v=20261017-12">
+  <link rel="stylesheet" href="./admin.css?v=20261017-15">
   <link rel="stylesheet" href="../interactions.css?v=20261017-12">
-  <script type="module" src="./app.js?v=20261017-14"></script>
+  <script type="module" src="./app.js?v=20261017-15"></script>
 </head>
 <body class="admin-body">
   <a class="skip-link" href="#main">跳到管理内容</a>
@@ -40,10 +40,20 @@
       <div class="admin-grid"><section class="list-pane" aria-labelledby="list-title">
         <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索反馈或联系邮箱</span><input id="admin-search" type="search" autocomplete="off" placeholder="搜索反馈或邮箱"></label>
         <div class="list-heading"><h2 id="list-title" class="sr-only">待确认的反馈</h2><label class="sr-only" for="admin-filter">筛选管理记录</label><select id="admin-filter"></select><label class="sr-only" for="admin-category">反馈分类</label><select id="admin-category"><option value="all">全部分类</option><option value="bug">问题反馈</option><option value="suggestion">改进建议</option><option value="other">其他</option></select><span id="list-count" class="subtle"></span></div>
+        <div id="feedback-list-actions" class="list-actions"><label class="sr-only" for="admin-progress">处理进展筛选</label><select id="admin-progress"></select><button id="export-feedback" class="text-button" type="button">导出反馈</button></div>
         <div id="admin-list" aria-busy="false"></div><button id="more" class="button secondary small" hidden>加载更多</button>
       </section><section id="inspector" class="inspector" aria-label="选中记录详情"></section></div>
     </section>
   </main>
+  <dialog id="feedback-export-dialog" class="export-dialog" aria-labelledby="export-title" aria-describedby="export-privacy">
+    <div class="dialog-header"><h2 id="export-title">导出反馈</h2><button id="close-export" class="icon-button" type="button" aria-label="关闭导出">×</button></div>
+    <p id="export-privacy" class="subtle">下载为 Markdown，方便交给 AI。不含联系方式和发码信息。</p>
+    <label class="field" for="export-range">导出范围<select id="export-range"></select></label>
+    <label class="field" for="export-category">反馈分类<select id="export-category"></select></label>
+    <label class="check-row"><input id="export-excluded" type="checkbox">包含重复、无效和回收站</label>
+    <p id="export-message" class="notice" role="status" aria-live="polite" hidden></p>
+    <div class="dialog-footer"><span id="export-count" class="subtle" role="status" aria-live="polite"></span><button id="download-feedback" class="button" type="button">下载 Markdown</button></div>
+  </dialog>
   <footer class="footer wrap"><span>联系邮箱仅管理员可见。</span><div><a href="../">返回公开反馈</a></div></footer>
   <noscript><p class="wrap">请启用 JavaScript 使用管理页。</p></noscript>
 </body>
