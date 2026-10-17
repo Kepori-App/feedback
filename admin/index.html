@@ -9,9 +9,9 @@
   <title>反馈管理 · Kepori</title>
   <link rel="icon" href="../assets/app-icon.png">
   <link rel="stylesheet" href="../styles.css?v=20261017-17">
-  <link rel="stylesheet" href="./admin.css?v=20261017-17">
+  <link rel="stylesheet" href="./admin.css?v=20261017-19">
   <link rel="stylesheet" href="../interactions.css?v=20261017-17">
-  <script type="module" src="./app.js?v=20261017-17"></script>
+  <script type="module" src="./app.js?v=20261017-19"></script>
 </head>
 <body class="admin-body">
   <a class="skip-link" href="#main">跳到管理内容</a>
@@ -19,17 +19,18 @@
   <main id="main" class="wrap admin-main">
     <section id="login-panel" class="login-layout" aria-labelledby="login-title">
       <div class="login-card"><h1 id="login-title">反馈管理</h1>
-        <form id="unlock-form" hidden><label class="field" for="unlock-password">解锁密码<input id="unlock-password" type="password" required autocomplete="current-password"></label><button class="button connect-button" type="submit">解锁</button><button id="cancel-import" class="text-button" type="button" hidden>取消导入</button></form>
+        <form id="unlock-form" hidden><label class="field" for="unlock-password">解锁密码<input id="unlock-password" type="password" required autocomplete="current-password"></label><label class="check-row"><input id="keep-unlocked" type="checkbox">刷新后保持解锁（8 小时）</label><button class="button connect-button" type="submit">解锁</button><button id="cancel-import" class="text-button" type="button" hidden>取消导入</button></form>
         <p id="login-message" class="notice" role="status" aria-live="polite" hidden></p>
         <button id="import-connection" class="button connect-button" type="button">导入登录文件</button>
         <details id="first-setup" class="setup-help"><summary>首次配置</summary><form id="connect-form">
           <label class="field" for="token">管理密钥<input id="token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
           <label class="check-row"><input id="remember" type="checkbox">加密记住此设备</label>
           <div id="save-password-fields" hidden><label class="field" for="save-password">设置解锁密码<input id="save-password" type="password" minlength="10" autocomplete="new-password" placeholder="至少 10 位"></label><label class="field" for="confirm-password">确认密码<input id="confirm-password" type="password" autocomplete="new-password"></label></div>
+          <label class="check-row"><input id="keep-connected" type="checkbox">刷新后保持解锁（8 小时）</label>
           <button class="button connect-button" type="submit">进入管理页</button>
           <p>仅使用 Kepori-App/feedback-admin 的 Issues 读写、Metadata 只读密钥。</p><a id="create-token" class="text-link" href="https://github.com/settings/personal-access-tokens/new?name=Kepori%20Feedback%20Admin&amp;target_name=Kepori-App&amp;expires_in=365&amp;issues=write&amp;description=Browser%20admin%20for%20Kepori%20feedback-admin%20Issues%20only" target="_blank" rel="noopener noreferrer">配置管理密钥 ↗</a>
         </form></details>
-        <details class="setup-help"><summary>登录帮助</summary><p>换设备：在原设备登录后，点右上角“登录与设备”下载加密登录文件。在这里导入，用原解锁密码登录。</p><p>没有登录文件或忘记密码时，可重新配置管理密钥。只有具备私有反馈仓库写入权限的账号可以管理。</p><button id="forget-device" class="text-button" type="button">清除此设备的登录配置</button></details>
+        <details class="setup-help"><summary>登录帮助</summary><p>勾选保持解锁后，管理密钥仅临时保存在此标签页的会话存储中，最长 8 小时；点击退出立即清除。请只在自己的设备上使用。</p><p>换设备：在原设备登录后，点右上角“登录与设备”下载加密登录文件。在这里导入，用原解锁密码登录。</p><p>没有登录文件或忘记密码时，可重新配置管理密钥。只有具备私有反馈仓库写入权限的账号可以管理。</p><button id="forget-device" class="text-button" type="button">清除此设备的登录配置</button></details>
         <input id="connection-file" type="file" accept=".json,application/json" hidden>
       </div>
     </section>

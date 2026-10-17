@@ -27,7 +27,7 @@
 .admin-record-dialog {width:min(660px,calc(100% - 32px))}.inspector {min-width:0}.detail-panel {min-width:0}.eyebrow {font-size:11px;color:var(--muted);letter-spacing:0}
 .inspector-title {font-size:23px;font-weight:500;letter-spacing:-.4px;line-height:1.6;overflow-wrap:anywhere;margin:10px 0 13px}.feedback-text {font-size:14px;line-height:1.95;white-space:pre-wrap;overflow-wrap:anywhere;margin:23px 0}
 .private-contact {display:flex;flex-direction:column;gap:3px;padding:16px 18px;margin:20px 0 0;border-radius:12px;background:var(--cream)}.private-contact .subtle {font-size:11px}.private-contact strong {font-size:13px;font-weight:400;overflow-wrap:anywhere}.private-contact .contact-total {font-size:12px;min-height:36px}
-.action-sections {border:0;padding:0;margin:0;min-width:0}.action-section {padding-top:22px;margin:0}.action-section h3,.member-reward h3,.history-title {font-size:13px;font-weight:500;margin:0 0 11px}
+.action-sections {border:0;padding:0;margin:0;min-width:0}.action-section {border:0;padding:22px 0 0;margin:0;min-width:0}.action-section h3,.member-reward h3,.history-title {font-size:13px;font-weight:500;margin:0 0 11px}
 .action-row {display:flex;flex-wrap:wrap;gap:8px}.action-row .button {padding:9px 12px;font-size:12px;min-height:44px}
 .choice-row {display:flex;flex-wrap:wrap;gap:8px}.choice-button.active,.choice-button.active:disabled {background:var(--action);border-color:var(--action);color:var(--on-action);opacity:1;font-weight:500}
 .duplicate-box {font-size:12px;margin-top:12px}.duplicate-box summary {min-height:44px;color:var(--muted)}.duplicate-box .field {font-size:12px;margin:12px 0 10px}

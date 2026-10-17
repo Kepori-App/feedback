@@ -15,6 +15,20 @@ function choiceButtons(values, selected, action, label) {
   return row;
 }
 
+function savingNotice(root, saving) {
+  if (saving.any) {
+    const status = el("p", "notice", `正在保存：${saving.labels.join("、")}。${saving.removed || saving.issued ? "" : "其他选项可继续操作。"}`);
+    status.setAttribute("role", "status"); root.append(status);
+  }
+  if (saving.notice && (!saving.any || saving.notice.error)) {
+    const status = el("p", `notice${saving.notice.error ? " error" : ""}`, saving.notice.text);
+    status.setAttribute("role", "status"); root.append(status);
+  }
+}
+function actionSection(label, disabled, className = "action-section") {
+  const section = el("fieldset", className); section.disabled = disabled; section.setAttribute("aria-label", label); return section;
+}
+
 export function feedbackDetail(record, group, feedback, pending, actions) {
   const root = el("div", "detail-panel");
   root.dataset.feedbackId = record.public_id;
@@ -24,6 +38,7 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   if (record.removed) tags.append(badge("已移除 · 不公开、不计数"));
   else tags.append(badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
   root.append(tags, el("p", "feedback-text", record.description));
+  savingNotice(root, pending);
   const files = record.published_files?.filter(item => record.source_files?.some(source => source.id === item.sourceId)) || [];
   if (files.length) {
     const attachments = el("details", "admin-attachments");
@@ -35,14 +50,13 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
     button(`此邮箱有效 ${group?.valid || 0} / 3 条，查看全部 →`, () => actions.member(record.email), "text-button contact-total"));
   root.append(contact);
   if (record.removed) {
-    const restore = button("恢复反馈", () => actions.send(record, "removed", false)); restore.disabled = pending;
+    const restore = button("恢复反馈", () => actions.send(record, "removed", false)); restore.disabled = pending.any;
     const removed = el("section", "moderation-section");
     removed.append(el("p", "subtle", "这条反馈已移入回收站。恢复后重新公开，并按原有标记计数。"), restore);
     root.append(removed); return root;
   }
-  const form = el("fieldset", "action-sections");
-  form.disabled = pending;
-  const validity = el("section", "action-section");
+  const form = el("div", "action-sections");
+  const validity = actionSection("计数与重复", pending.validity || pending.removed);
   validity.append(el("h3", "", "计数"));
   const choices = el("div", "action-row");
   for (const [value, label] of [["有效", "标记有效"], ["无效", "不计数"], ["待确认", "恢复待确认"]]) {
@@ -52,9 +66,9 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   }
   validity.append(choices);
   validity.append(duplicateControls(record, feedback, actions));
-  const category = el("section", "action-section"); category.append(el("h3", "", "分类"),
+  const category = actionSection("分类", pending.category || pending.removed); category.append(el("h3", "", "分类"),
     choiceButtons(Object.entries(CATEGORIES), record.category || "other", value => actions.send(record, "category", value), "反馈分类"));
-  const status = el("section", "action-section"); status.append(el("h3", "", "处理进展"),
+  const status = actionSection("处理进展", pending.status || pending.removed); status.append(el("h3", "", "处理进展"),
     choiceButtons(STATUSES.map(value => [value, statusLabel(value, record.category)]), record.status,
       value => actions.send(record, "status", value), "处理进展"));
   const reply = el("details", "action-section reply-section"); reply.append(el("summary", "", "公开回复（选填）"));
@@ -62,9 +76,12 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   const replyField = el("input", "reply-input"); replyField.type = "text"; replyField.maxLength = 6000;
   replyField.setAttribute("aria-label", "公开回复内容"); replyField.placeholder = "例如：感谢建议，已安排到下一版。"; replyField.value = record.reply || "";
   replyField.dataset.initial = record.reply || "";
-  reply.append(replyField, button("保存公开回复", () => actions.send(record, "reply", replyField.value)), el("p", "subtle", "留空保存可清除回复。这里的文字所有人可见。"));
+  const replyControls = actionSection("公开回复", pending.reply || pending.removed, "action-sections");
+  replyControls.append(replyField, button("保存公开回复", () => actions.send(record, "reply", replyField.value)), el("p", "subtle", "留空保存可清除回复。这里的文字所有人可见。"));
+  reply.append(replyControls);
   const moderation = el("section", "moderation-section");
-  moderation.append(button("移入回收站", () => actions.send(record, "removed", true), "text-button"),
+  const remove = button("移入回收站", () => actions.send(record, "removed", true), "text-button"); remove.disabled = pending.any;
+  moderation.append(remove,
     el("p", "subtle", "从公开页移除并停止计数，之后可恢复。"));
   form.append(validity, status, category, reply, moderation); root.append(form);
   return root;
@@ -108,6 +125,7 @@ export function restoreDraft(inspector, draft) {
 export function memberDetail(group, pending, actions) {
   const root = el("div", "detail-panel");
   root.append(el("span", "eyebrow muted", "同一邮箱 · 持续累计"), el("h2", "inspector-title", group.email));
+  savingNotice(root, pending);
   const count = el("div", "member-progress");
   count.append(el("strong", "", String(group.valid)), el("span", "", "/ 3 条有效反馈"));
   const removedCount = group.records.filter(record => record.removed).length;
@@ -118,7 +136,7 @@ export function memberDetail(group, pending, actions) {
   email.href = `mailto:${encodeURIComponent(group.email)}`; reward.append(email);
   const issue = group.member;
   const issued = button(group.issued ? "撤销已发码标记" : "我已发码，标记完成", () => actions.send(issue, "issued", !group.issued));
-  issued.disabled = pending || !issue || (!group.issued && group.valid < 3);
+  issued.disabled = pending.any || !issue || (!group.issued && group.valid < 3);
   reward.append(issued, el("p", "subtle", "请先自行发送兑换码，再标记。此按钮只记录发放结果。"));
   if (!issue) reward.append(el("p", "subtle", "用户累计记录仍在生成，稍后刷新即可标记。"));
   root.append(reward, el("h3", "history-title", "该邮箱的全部反馈"));
