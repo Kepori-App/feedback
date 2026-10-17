@@ -36,8 +36,9 @@ function render() {
   const visible = feedback.filter(record => (currentStatus === '全部' || record.status === currentStatus) &&
     normalize(`${record.id} ${record.title} ${record.description} ${record.nickname}`).includes(query));
   const sort = $('#sort').value;
+  const priority = { '开发中': 3, '已采纳': 2, '已完成': 1, '待评估': 0, '暂不采纳': -1 };
   visible.sort((a, b) => sort === 'updated' ?
-    statuses.indexOf(b.status) - statuses.indexOf(a.status) || b.createdAt.localeCompare(a.createdAt) :
+    priority[b.status] - priority[a.status] || b.createdAt.localeCompare(a.createdAt) :
     (sort === 'oldest' ? 1 : -1) * a.createdAt.localeCompare(b.createdAt));
   list.replaceChildren();
   if (!feedback.length) list.append(empty('第一个好想法，等你来写', '这里会公开展示大家的反馈，以及每条建议的处理进展。'));
@@ -86,6 +87,7 @@ function openDetail(id, changeUrl = true) {
   $('#copy-status').textContent = '';
   if (changeUrl) history.pushState(null, '', `#${id}`);
   if (!dialog.open) dialog.showModal();
+  $('#close-dialog').focus();
   dialog.scrollTop = 0;
 }
 
