@@ -1,6 +1,6 @@
-import { categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-12";
-import { safeAttachments } from "../attachments.js?v=20261017-12";
-import { progressLabel, selectExportFeedback } from "./feedback-query.js?v=20261017-15";
+import { categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-17";
+import { safeAttachments } from "../attachments.js?v=20261017-17";
+import { progressLabel, selectExportFeedback } from "./feedback-query.js?v=20261017-17";
 
 const PUBLIC_URL = "https://kepori-app.github.io/feedback/";
 const MAX_BYTES = 10 * 1024 * 1024;

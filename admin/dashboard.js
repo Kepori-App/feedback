@@ -1,15 +1,24 @@
-import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-12";
-import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-12";
-import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-12";
-import { PROGRESS, progressLabel, selectFeedback } from "./feedback-query.js?v=20261017-15";
-import { connectFeedbackExport } from "./export-dialog.js?v=20261017-15";
+import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-17";
+import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-17";
+import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-17";
+import { PROGRESS, progressLabel, selectFeedback } from "./feedback-query.js?v=20261017-17";
+import { connectFeedbackExport } from "./export-dialog.js?v=20261017-17";
+import { pageWindow, pageFor, renderPagination } from "../pagination.js?v=20261017-17";
+import { connectRecordDialog } from "./record-dialog.js?v=20261017-17";
 
 const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效", "回收站"], members: ["待发码", "全部用户", "已发码", "累计中"] };
 export function createDashboard(api) {
   const byId = id => document.getElementById(id);
-  let records = [], groups = [], view = "feedback", filter = "待确认", category = "all", progress = "all", selected = null, limit = 30;
+  let records = [], groups = [], view = "feedback", filter = "全部反馈", category = "all", progress = "all", selected = null, page = 1;
   let stopped = false, refreshing = false, timer, summaryNumber, lastDetail = "", importRequested = false;
-  const pending = new Map(), sending = new Set(), removers = [];
+  const pending = new Map(), sending = new Set(), drafts = new Map(), removers = [];
+  let lastVisible = [];
+  const recordDialog = connectRecordDialog(key => {
+    const identity = item => view === "feedback" ? item.public_id : item.email;
+    if (!lastVisible.some(item => identity(item) === key)) return;
+    const destination = pageFor(lastVisible, identity, key);
+    if (page !== destination) { page = destination; render(); }
+  });
   const listen = (node, event, handler) => { node.addEventListener(event, handler); removers.push(() => node.removeEventListener(event, handler)); };
   const feedback = () => records.filter(record => record.kind === "feedback");
   const message = (text, error = false) => notice(byId("workspace-message"), text, error);
@@ -17,12 +26,17 @@ export function createDashboard(api) {
   const exportControl = connectFeedbackExport(() => ({ records: [...feedback()], query: { filter, category, progress, query: byId("admin-search").value } }), message);
 
   function selectView(nextView, nextFilter, selection = null) {
-    view = nextView; filter = nextFilter; category = "all"; progress = "all"; selected = selection; limit = 30; lastDetail = "";
+    recordDialog.pause(); view = nextView; filter = nextFilter; category = "all"; progress = "all"; selected = selection; page = 1; lastDetail = "";
+    if (selection) {
+      const candidates = view === "feedback" ? selectFeedback(feedback(), { filter }) : groups;
+      page = pageFor(candidates, item => view === "feedback" ? item.public_id : item.email, selection);
+    }
     byId("admin-search").value = ""; render();
+    if (selection) recordDialog.show(selection, view === "feedback" ? "反馈详情" : "用户与发码"); else recordDialog.close();
   }
   function choose(id) {
-    selected = id; lastDetail = ""; render();
-    if (matchMedia("(max-width: 700px)").matches) byId("inspector").scrollIntoView({ behavior: "instant", block: "start" });
+    recordDialog.pause(); selected = id; lastDetail = ""; render();
+    recordDialog.show(id, view === "feedback" ? "反馈详情" : "用户与发码");
   }
   function render() {
     const items = feedback();
@@ -51,15 +65,28 @@ export function createDashboard(api) {
       (filter === "全部用户" || (filter === "待发码" && group.valid >= 3 && !group.issued) ||
         (filter === "已发码" && group.issued) || (filter === "累计中" && group.valid < 3 && !group.issued)) && group.email.toLowerCase().includes(query));
     byId("list-title").textContent = filter === "待确认" ? "待确认的反馈" : filter;
+    lastVisible = visible;
     byId("list-count").textContent = `${visible.length} ${view === "feedback" ? "条" : "位"}`;
     const key = item => view === "feedback" ? item.public_id : item.email;
     const all = view === "feedback" ? items.filter(item => filter === "回收站" ? item.removed : !item.removed) : groups;
-    if (!all.some(item => key(item) === selected)) selected = visible[0] ? key(visible[0]) : null;
-    byId("admin-list").replaceChildren(...visible.slice(0, limit).map(item => view === "feedback" ?
+    if (!all.some(item => key(item) === selected)) { selected = null; recordDialog.close(); }
+    const pagination = pageWindow(visible.length, page, 20); page = pagination.page;
+    byId("admin-list").replaceChildren(...visible.slice(pagination.start, pagination.end).map(item => view === "feedback" ?
       feedbackRow(item, selected === key(item), pending.has(item.issue_number), () => choose(key(item))) :
       memberRow(item, selected === key(item), pending.has(item.member?.issue_number), () => choose(key(item)))));
-    if (!visible.length) byId("admin-list").append(empty(query ? "没有匹配的记录" : filter === "回收站" ? "回收站是空的" : view === "members" && filter === "待发码" ? "暂时没有待发码用户" : "这里暂时没有记录", query ? "试试其他关键词或邮箱。" : filter === "回收站" ? "移除的反馈会保留在这里，可以随时恢复。" : "用户提交后会自动同步。你也可以点击上方“同步新反馈”。"));
-    byId("more").hidden = visible.length <= limit;
+    if (!visible.length) {
+      const descriptions = { "回收站": ["回收站是空的", "移除的反馈会保留在这里，可以随时恢复。"],
+        "待发码": ["暂时没有待发码用户", "累计满三条有效反馈后，会自动出现在这里。"],
+        "已发码": ["还没有发码记录", "发码后，在用户详情中标记即可。"],
+        "待确认": ["没有待确认的反馈", "新反馈同步后会出现在这里。"] };
+      const [title, text] = descriptions[filter] || ["没有匹配的记录", "试试其他筛选条件。"];
+      byId("admin-list").append(empty(query ? "没有匹配的记录" : title, query ? "试试其他关键词或邮箱。" : text));
+    }
+    renderPagination(byId("admin-pagination"), pagination, next => {
+      page = next; render();
+      byId("admin-pagination").querySelector('[aria-current="page"]')?.focus({ preventScroll: true });
+      byId("admin-list").scrollIntoView({ block: "start", behavior: "instant" });
+    }, { unit: view === "feedback" ? "条" : "位", label: "管理列表分页" });
     const current = all.find(item => key(item) === selected);
     const owner = current && view === "feedback" ? groups.find(group => group.email === current.email) : null;
     const detailData = current && (view === "feedback" ? [current.public_id, current.category, current.title, current.description,
@@ -71,10 +98,12 @@ export function createDashboard(api) {
     if (signature !== lastDetail) {
       lastDetail = signature;
       const draft = captureDraft(byId("inspector"));
+      if (draft) drafts.set(draft.id, draft);
       byId("inspector").replaceChildren(current ? view === "feedback" ?
         feedbackDetail(current, groups.find(group => group.email === current.email), items, pending.has(current.issue_number), actions) :
         memberDetail(current, pending.has(current.member?.issue_number), actions) : empty("选一条，认真回应", "反馈详情、处理按钮和用户累计会显示在这里。"));
-      restoreDraft(byId("inspector"), draft);
+      restoreDraft(byId("inspector"), view === "feedback" ? drafts.get(current?.public_id) : null);
+      const heading = byId("inspector").querySelector("h2"); if (heading) heading.id = "admin-detail-title";
     }
     const contactTotal = byId("inspector").querySelector(".contact-total");
     if (contactTotal && owner) contactTotal.textContent = `此邮箱有效 ${owner.valid} / 3 条，查看全部 →`;
@@ -144,13 +173,12 @@ export function createDashboard(api) {
   }
   listen(byId("refresh"), "click", () => refresh());
   listen(byId("import"), "click", requestImport);
-  listen(byId("more"), "click", () => { limit += 30; render(); });
-  listen(byId("admin-filter"), "change", event => { filter = event.target.value; selected = null; limit = 30; render(); });
-  listen(byId("admin-category"), "change", event => { category = event.target.value; selected = null; limit = 30; render(); });
-  listen(byId("admin-progress"), "change", event => { progress = event.target.value; selected = null; limit = 30; render(); });
-  listen(byId("admin-search"), "input", () => { limit = 30; selected = null; render(); });
+  listen(byId("admin-filter"), "change", event => { filter = event.target.value; selected = null; page = 1; render(); });
+  listen(byId("admin-category"), "change", event => { category = event.target.value; selected = null; page = 1; render(); });
+  listen(byId("admin-progress"), "change", event => { progress = event.target.value; selected = null; page = 1; render(); });
+  listen(byId("admin-search"), "input", () => { page = 1; selected = null; render(); });
   document.querySelectorAll("[data-view]").forEach(node => listen(node, "click", () => selectView(node.dataset.view, FILTERS[node.dataset.view][0])));
   byId("import").disabled = true;
   render(); refresh(false);
-  return { refresh, destroy() { stopped = true; clearTimeout(timer); exportControl.destroy(); removers.forEach(remove => remove()); pending.clear(); records = []; groups = []; byId("admin-list").replaceChildren(); byId("inspector").replaceChildren(); byId("metrics").replaceChildren(); byId("admin-search").value = ""; notice(byId("workspace-message")); } };
+  return { refresh, destroy() { stopped = true; clearTimeout(timer); recordDialog.destroy(); exportControl.destroy(); removers.forEach(remove => remove()); pending.clear(); drafts.clear(); lastVisible = []; records = []; groups = []; byId("admin-list").replaceChildren(); byId("admin-pagination").replaceChildren(); byId("admin-pagination").hidden = true; byId("inspector").replaceChildren(); byId("metrics").replaceChildren(); byId("admin-search").value = ""; notice(byId("workspace-message")); } };
 }

@@ -1,4 +1,4 @@
-import { STATUSES, statusLabel } from "../feedback-model.js?v=20261017-12";
+import { STATUSES, statusLabel } from "../feedback-model.js?v=20261017-17";
 
 export const PROGRESS = ["all", "unfinished", ...STATUSES];
 export function progressLabel(value, category = "all") {

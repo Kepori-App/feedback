@@ -1,7 +1,7 @@
-import { CATEGORIES } from "../feedback-model.js?v=20261017-12";
-import { el, notice } from "./views.js?v=20261017-12";
-import { PROGRESS, progressLabel, selectExportFeedback } from "./feedback-query.js?v=20261017-15";
-import { createFeedbackExport } from "./feedback-export.js?v=20261017-15";
+import { CATEGORIES } from "../feedback-model.js?v=20261017-17";
+import { el, notice } from "./views.js?v=20261017-17";
+import { PROGRESS, progressLabel, selectExportFeedback } from "./feedback-query.js?v=20261017-17";
+import { createFeedbackExport } from "./feedback-export.js?v=20261017-17";
 
 export function connectFeedbackExport(snapshot, message) {
   const byId = id => document.getElementById(id);

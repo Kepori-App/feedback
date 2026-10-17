@@ -1,4 +1,4 @@
-import { connectionFile, readConnectionFile } from "./vault.js?v=20261017-14";
+import { connectionFile, readConnectionFile } from "./vault.js?v=20261017-17";
 
 export function canExportConnection(url) {
   const page = new URL(url);

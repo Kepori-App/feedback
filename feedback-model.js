@@ -13,12 +13,12 @@ export function statusLabel(status, category = 'all') {
   return STATUS_LABELS[category]?.[STATUSES.indexOf(status)] || STATUS_LABELS.other[STATUSES.indexOf(status)] || status;
 }
 const normalize = value => String(value).normalize('NFKC').toLocaleLowerCase().replace(/\s+/g, '');
-export function visibleFeedback(records, { category = 'all', status = 'all', query = '' } = {}) {
+export function visibleFeedback(records, { category = 'all', status = 'all', query = '', sort = 'newest' } = {}) {
   const search = normalize(query);
   return records.filter(record => (category === 'all' || categoryOf(record.category) === category) &&
-    (status === 'all' || record.status === status) &&
+    (status === 'all' || (status === 'unfinished' ? STATUSES.slice(0, 3).includes(record.status) : record.status === status)) &&
     normalize(`${record.id} ${record.title} ${record.description} ${record.nickname}`).includes(search))
-    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    .sort((a, b) => (sort === 'oldest' ? 1 : -1) * (a.createdAt.localeCompare(b.createdAt) || Number(a.id.slice(2)) - Number(b.id.slice(2))));
 }
 export function validatePublic(data) {
   if (data.schemaVersion !== 1 || !Array.isArray(data.feedback)) throw new Error('数据格式无法读取');

@@ -1,8 +1,8 @@
-import { GitHubAPI } from "./github.js?v=20261017-2";
-import { savedVault, saveVault, forgetVault, seal, unseal } from "./vault.js?v=20261017-14";
-import { notice } from "./views.js";
-import { createDashboard } from "./dashboard.js?v=20261017-15";
-import { connectionFiles } from "./connection-file.js?v=20261017-14";
+import { GitHubAPI } from "./github.js?v=20261017-17";
+import { savedVault, saveVault, forgetVault, seal, unseal } from "./vault.js?v=20261017-17";
+import { notice } from "./views.js?v=20261017-17";
+import { createDashboard } from "./dashboard.js?v=20261017-17";
+import { connectionFiles } from "./connection-file.js?v=20261017-17";
 
 export function startLogin() {
   const byId = id => document.getElementById(id);

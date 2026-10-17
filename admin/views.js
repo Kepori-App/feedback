@@ -1,4 +1,4 @@
-import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-12';
+import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-17';
 
 export function el(tag, className = "", text = "") {
   const node = document.createElement(tag);
@@ -34,21 +34,26 @@ export function metric(value, label, action) {
 }
 export function feedbackRow(record, selected, pending, action) {
   const node = button("", action, `record-row${selected ? " selected" : ""}`);
-  node.setAttribute("aria-pressed", String(selected));
+  node.dataset.recordKey = record.public_id;
+  node.setAttribute("aria-label", `处理反馈：${record.title}，${statusLabel(record.status, record.category)}，${record.removed ? "已移除" : record.validity}`);
+  node.setAttribute("aria-haspopup", "dialog"); node.setAttribute("aria-controls", "admin-detail-dialog");
   const top = el("span", "record-top");
-  top.append(el("span", "record-id", record.public_id), el("span", "subtle", date(record.created_at)));
+  top.append(el("strong", "record-title", record.title), badge(statusLabel(record.status, record.category), ["已采纳", "已完成"].includes(record.status)));
   const badges = el("span", "record-badges");
   badges.append(badge(categoryLabel(record.category)));
   if (record.removed) badges.append(badge("已移除 · 不计数"));
-  else badges.append(badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
+  else badges.append(badge(record.validity === "重复" ? "重复 · 不计数" : record.validity, record.validity === "有效"));
   if (!record.removed && record.suspected && record.validity === "待确认") badges.append(badge("疑似重复"));
   if (pending) badges.append(badge("同步中…"));
-  node.append(top, el("strong", "record-title", record.title), el("span", "record-contact", record.email), badges);
+  const metadata = el("span", "record-metadata");
+  metadata.append(badges, el("span", "", record.nickname || "匿名用户"), el("time", "", date(record.created_at)));
+  node.append(top, metadata);
   return node;
 }
 export function memberRow(group, selected, pending, action) {
   const node = button("", action, `record-row${selected ? " selected" : ""}`);
-  node.setAttribute("aria-pressed", String(selected));
+  node.dataset.recordKey = group.email;
+  node.setAttribute("aria-haspopup", "dialog"); node.setAttribute("aria-controls", "admin-detail-dialog");
   const top = el("span", "record-top");
   top.append(badge(group.issued ? "已发码" : group.valid >= 3 ? "待发码" : "累计中", group.valid >= 3), el("span", "subtle", `${group.records.length} 条反馈`));
   const count = el("span", "member-count");
