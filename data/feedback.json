@@ -10,8 +10,8 @@
       "nickname": "系统联调测试",
       "createdAt": "2026-10-17T08:00:00Z",
       "status": "待评估",
-      "validity": "有效",
-      "duplicateOf": null,
+      "validity": "重复",
+      "duplicateOf": "F-1",
       "reply": ""
     },
     {
@@ -42,7 +42,7 @@
       "description": "夜间阅读时希望界面可以切换为深色背景，让眼睛更舒服。本条为搭建联调测试，不是真实用户建议。",
       "nickname": "系统联调测试",
       "createdAt": "2026-01-15T08:00:00Z",
-      "status": "待评估",
+      "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
       "reply": ""
