@@ -90,6 +90,8 @@ select {appearance:none;-webkit-appearance:none;min-height:44px;max-width:160px;
 .text-link {font-size:12px;text-decoration:underline;text-underline-offset:3px}
 .footer {width:min(800px,calc(100% - 40px));border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px;padding:21px 0 28px;font-size:12px;color:var(--muted)}
 .footer>div {display:flex;gap:18px;flex-wrap:wrap}
+.footer-note {display:flex;gap:6px 12px;flex-wrap:wrap;align-items:baseline}
+.visit-count {white-space:nowrap;font-variant-numeric:tabular-nums;font-size:11px}
 dialog {width:min(620px,calc(100% - 32px));max-height:85dvh;overflow:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);padding:25px;box-shadow:0 12px 70px #00000018}
 dialog::backdrop {background:#00000038}
 .dialog-header {display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}

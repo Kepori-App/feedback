@@ -7,9 +7,10 @@
   <meta name="description" content="反馈 Kepori 使用问题、分享改进建议，查看处理进展。无需注册。">
   <title>用户反馈 · Kepori</title>
   <link rel="icon" href="./assets/app-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=20261017-12">
+  <link rel="stylesheet" href="./styles.css?v=20261017-13">
   <link rel="stylesheet" href="./interactions.css?v=20261017-12">
   <script type="module" src="./app.js?v=20261017-12"></script>
+  <script type="module" src="./visits.js?v=20261017-13"></script>
 </head>
 <body>
   <a class="skip-link" href="#feedback">跳到反馈列表</a>
@@ -45,10 +46,11 @@
         <p><strong>满三条后手动发码。</strong>累计 3 条有效且不重复的反馈，可按 48 元价格解锁终身会员，每个邮箱限一次。开发者通过联系邮箱手动发放兑换方式。</p>
         <p><strong>图片和视频选填。</strong>每条最多 3 个附件，单个不超过 10MB。附件会随反馈公开，可在详情中查看图片或播放视频。</p>
         <p><strong>联系邮箱不公开。</strong>昵称、反馈、附件、处理进展、计数结果和开发者回复会公开。请先遮挡附件中的隐私，勿包含邮箱、手机号、密码等信息。</p>
+        <p><strong>访问次数。</strong>由<a href="https://busuanzi.9420.ltd/" target="_blank" rel="noopener noreferrer">不蒜子统计服务</a>累计本页访问；请求仅指定公开页面地址，服务会收到正常网络信息（如 IP 和浏览器信息）。统计从接入时开始，不代表独立人数。</p>
       </div>
     </details>
   </main>
-  <footer class="footer wrap"><span>一起把 Kepori 做得更好。</span><div><a href="https://kepori.app">官网</a><a href="mailto:jinwandalaohu940@gmail.com">联系开发者</a><a href="https://kepori.app/privacy">隐私政策</a><a href="./admin/">管理入口</a></div></footer>
+  <footer class="footer wrap"><span class="footer-note">一起把 Kepori 做得更好。<span id="visit-count" class="visit-count" title="从接入统计后累计的公开页访问次数，刷新页面也会计数" hidden>访问统计加载中…</span></span><div><a href="https://kepori.app">官网</a><a href="mailto:jinwandalaohu940@gmail.com">联系开发者</a><a href="https://kepori.app/privacy">隐私政策</a><a href="./admin/">管理入口</a></div></footer>
   <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><span class="subtle" id="detail-id"></span><button id="close-dialog" class="icon-button" aria-label="关闭反馈详情">×</button></div><div id="detail-content"></div><div class="dialog-footer"><button id="copy-link" class="button secondary small">复制链接</button><span id="copy-status" class="subtle" role="status"></span></div></dialog>
   <noscript><p class="wrap">请启用 JavaScript 查看反馈，或通过页脚联系开发者。</p></noscript>
 </body>
