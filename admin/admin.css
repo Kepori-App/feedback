@@ -105,3 +105,21 @@
 .duplicate-controls .candidate-box {margin:14px 0}
 .admin-attachments {margin:12px 0;color:var(--muted);font-size:12px}
 .admin-attachments>summary {min-height:40px;align-content:center;cursor:pointer}
+.moderation-section {border-top:1px solid var(--line);margin-top:24px;padding-top:15px}
+.moderation-section p {font-size:11px;margin:5px 0 10px}
+.private-contact+.moderation-section {border:0;margin-top:12px}
+.login-secondary {margin-top:18px}
+.login-secondary>.text-button {min-height:44px}
+.login-secondary .setup-help {margin-top:8px}
+.login-secondary .setup-help summary {font-size:12px}
+.login-import {margin-top:16px;min-height:44px}
+.device-menu {position:relative;font-size:12px;color:var(--muted)}
+.device-menu>summary {gap:6px;white-space:nowrap}
+.device-panel {position:absolute;right:0;top:calc(100% + 10px);width:min(270px,calc(100vw - 48px));border:1px solid var(--line);border-radius:var(--small-radius);background:var(--surface);box-shadow:var(--soft-shadow);padding:15px 18px}
+.device-panel .text-button {min-height:44px;color:var(--ink)}
+.device-panel p {font-size:11px;line-height:1.8;margin:8px 0 0}
+@media(max-width:600px) {
+  .admin-body .header:has(#device-menu:not([hidden])) .quiet-link {display:none}
+  .login-card input {font-size:16px}
+  .login-card input::placeholder {font-size:13px}
+}

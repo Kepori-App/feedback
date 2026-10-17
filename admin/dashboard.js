@@ -1,8 +1,8 @@
-import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-11";
-import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-11";
-import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-11";
+import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-12";
+import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-12";
+import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-12";
 
-const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效"], members: ["待发码", "全部用户", "已发码", "累计中"] };
+const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效", "回收站"], members: ["待发码", "全部用户", "已发码", "累计中"] };
 export function createDashboard(api) {
   const byId = id => document.getElementById(id);
   let records = [], groups = [], view = "feedback", filter = "待确认", category = "all", selected = null, limit = 30;
@@ -11,7 +11,7 @@ export function createDashboard(api) {
   const listen = (node, event, handler) => { node.addEventListener(event, handler); removers.push(() => node.removeEventListener(event, handler)); };
   const feedback = () => records.filter(record => record.kind === "feedback");
   const message = (text, error = false) => notice(byId("workspace-message"), text, error);
-  const actions = { api, send, feedback: id => selectView("feedback", "全部反馈", id), member: email => selectView("members", "全部用户", email) };
+  const actions = { api, send, feedback: id => selectView("feedback", feedback().find(item => item.public_id === id)?.removed ? "回收站" : "全部反馈", id), member: email => selectView("members", "全部用户", email) };
 
   function selectView(nextView, nextFilter, selection = null) {
     view = nextView; filter = nextFilter; category = "all"; selected = selection; limit = 30; lastDetail = "";
@@ -24,7 +24,7 @@ export function createDashboard(api) {
   function render() {
     const items = feedback();
     byId("metrics").replaceChildren(
-      metric(items.filter(item => item.validity === "待确认").length, "待确认反馈", () => selectView("feedback", "待确认")),
+      metric(items.filter(item => !item.removed && item.validity === "待确认").length, "待确认反馈", () => selectView("feedback", "待确认")),
       metric(groups.filter(group => group.valid >= 3 && !group.issued).length, "待发码", () => selectView("members", "待发码")));
     document.querySelectorAll("[data-view]").forEach(node => {
       const active = node.dataset.view === view; node.classList.toggle("active", active); node.setAttribute("aria-pressed", String(active));
@@ -37,7 +37,8 @@ export function createDashboard(api) {
     filterControl.value = filter;
     byId("admin-category").hidden = view !== "feedback"; byId("admin-category").value = category;
     const query = byId("admin-search").value.trim().toLowerCase();
-    let visible = view === "feedback" ? items.filter(item => (category === "all" || item.category === category) && (filter === "全部反馈" || item.validity === filter) &&
+    let visible = view === "feedback" ? items.filter(item => (category === "all" || item.category === category) &&
+      (filter === "回收站" ? item.removed : !item.removed && (filter === "全部反馈" || item.validity === filter)) &&
       `${item.public_id} ${item.title} ${item.description} ${item.email}`.toLowerCase().includes(query))
       .sort((a, b) => b.created_at.localeCompare(a.created_at)) : groups.filter(group =>
       (filter === "全部用户" || (filter === "待发码" && group.valid >= 3 && !group.issued) ||
@@ -45,20 +46,20 @@ export function createDashboard(api) {
     byId("list-title").textContent = filter === "待确认" ? "待确认的反馈" : filter;
     byId("list-count").textContent = `${visible.length} ${view === "feedback" ? "条" : "位"}`;
     const key = item => view === "feedback" ? item.public_id : item.email;
-    const all = view === "feedback" ? items : groups;
+    const all = view === "feedback" ? items.filter(item => filter === "回收站" ? item.removed : !item.removed) : groups;
     if (!all.some(item => key(item) === selected)) selected = visible[0] ? key(visible[0]) : null;
     byId("admin-list").replaceChildren(...visible.slice(0, limit).map(item => view === "feedback" ?
       feedbackRow(item, selected === key(item), pending.has(item.issue_number), () => choose(key(item))) :
       memberRow(item, selected === key(item), pending.has(item.member?.issue_number), () => choose(key(item)))));
-    if (!visible.length) byId("admin-list").append(empty(query ? "没有匹配的记录" : view === "members" && filter === "待发码" ? "暂时没有待发码用户" : "这里暂时没有记录", query ? "试试其他关键词或邮箱。" : "用户提交后会自动同步。你也可以点击上方“同步新反馈”。"));
+    if (!visible.length) byId("admin-list").append(empty(query ? "没有匹配的记录" : filter === "回收站" ? "回收站是空的" : view === "members" && filter === "待发码" ? "暂时没有待发码用户" : "这里暂时没有记录", query ? "试试其他关键词或邮箱。" : filter === "回收站" ? "移除的反馈会保留在这里，可以随时恢复。" : "用户提交后会自动同步。你也可以点击上方“同步新反馈”。"));
     byId("more").hidden = visible.length <= limit;
     const current = all.find(item => key(item) === selected);
     const owner = current && view === "feedback" ? groups.find(group => group.email === current.email) : null;
     const detailData = current && (view === "feedback" ? [current.public_id, current.category, current.title, current.description,
-      current.email, current.created_at, current.status, current.validity, current.duplicate_of, current.reply, current.suspected,
+      current.email, current.created_at, current.status, current.validity, current.duplicate_of, current.reply, current.suspected, current.removed,
       current.published_files, current.source_files?.map(item => item.id)] :
       [current.email, current.valid, current.duplicates, current.issued, current.member?.issue_number,
-        current.records.map(item => [item.public_id, item.title, item.created_at, item.validity])]);
+        current.records.map(item => [item.public_id, item.title, item.created_at, item.validity, item.removed])]);
     const signature = JSON.stringify([view, detailData, current && pending.get(view === "feedback" ? current.issue_number : current.member?.issue_number)]);
     if (signature !== lastDetail) {
       lastDetail = signature;

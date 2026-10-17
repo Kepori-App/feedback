@@ -8,26 +8,29 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
   <title>反馈管理 · Kepori</title>
   <link rel="icon" href="../assets/app-icon.png">
-  <link rel="stylesheet" href="../styles.css?v=20261017-11">
-  <link rel="stylesheet" href="./admin.css?v=20261017-11">
-  <link rel="stylesheet" href="../interactions.css?v=20261017-11">
-  <script type="module" src="./app.js?v=20261017-11"></script>
+  <link rel="stylesheet" href="../styles.css?v=20261017-12">
+  <link rel="stylesheet" href="./admin.css?v=20261017-12">
+  <link rel="stylesheet" href="../interactions.css?v=20261017-12">
+  <script type="module" src="./app.js?v=20261017-12"></script>
 </head>
 <body class="admin-body">
   <a class="skip-link" href="#main">跳到管理内容</a>
-  <header class="header wrap"><a class="brand" href="../"><img src="../assets/app-icon.png" width="26" height="26" alt=""><span>Kepori</span><span class="brand-caption">反馈管理</span></a><nav aria-label="管理导航"><a class="quiet-link" href="../">公开反馈 ↗</a><button id="lock" class="text-button" hidden>退出</button></nav></header>
+  <header class="header wrap"><a class="brand" href="../"><img src="../assets/app-icon.png" width="26" height="26" alt=""><span>Kepori</span><span class="brand-caption">反馈管理</span></a><nav aria-label="管理导航"><a class="quiet-link" href="../">公开反馈 ↗</a><details id="device-menu" class="device-menu" hidden><summary>登录与设备</summary><div class="device-panel"><button id="export-connection" class="text-button" type="button">下载加密登录文件</button><p>换设备时，在登录页导入文件，再输入原解锁密码。</p><p>仅在已加密保存的设备上可下载。</p></div></details><button id="lock" class="text-button" hidden>退出</button></nav></header>
   <main id="main" class="wrap admin-main">
     <section id="login-panel" class="login-layout" aria-labelledby="login-title">
       <div class="login-card"><h1 id="login-title">反馈管理</h1>
-        <form id="connect-form"><p class="subtle">首次连接 GitHub 私有反馈记录。</p>
-          <label class="field" for="token">GitHub 管理密钥<input id="token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
-          <label class="check-row"><input id="remember" type="checkbox">在此设备加密保存</label>
-          <div id="save-password-fields" hidden><label class="field" for="save-password">设置本机解锁密码<input id="save-password" type="password" minlength="10" autocomplete="new-password" placeholder="至少 10 位"></label><label class="field" for="confirm-password">再输入一次<input id="confirm-password" type="password" autocomplete="new-password"></label></div>
+        <form id="unlock-form" hidden><label class="field" for="unlock-password">解锁密码<input id="unlock-password" type="password" required autocomplete="current-password"></label><button class="button connect-button" type="submit">解锁</button><button id="cancel-import" class="text-button" type="button" hidden>取消导入</button></form>
+        <p id="login-message" class="notice" role="status" aria-live="polite" hidden></p>
+        <button id="import-connection" class="button connect-button" type="button">导入登录文件</button>
+        <details id="first-setup" class="setup-help"><summary>首次配置</summary><form id="connect-form">
+          <label class="field" for="token">管理密钥<input id="token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+          <label class="check-row"><input id="remember" type="checkbox">加密记住此设备</label>
+          <div id="save-password-fields" hidden><label class="field" for="save-password">设置解锁密码<input id="save-password" type="password" minlength="10" autocomplete="new-password" placeholder="至少 10 位"></label><label class="field" for="confirm-password">确认密码<input id="confirm-password" type="password" autocomplete="new-password"></label></div>
           <button class="button connect-button" type="submit">进入管理页</button>
-          <details class="setup-help"><summary>如何获取管理密钥</summary><p>资源所有者选 Kepori-App，仅选择 feedback-admin 仓库。权限只需 Issues 读写、Metadata 只读。不要使用 Tally 密钥或网站发布密钥。</p><a id="create-token" class="text-link" href="https://github.com/settings/personal-access-tokens/new?name=Kepori%20Feedback%20Admin&amp;target_name=Kepori-App&amp;expires_in=365&amp;issues=write&amp;description=Browser%20admin%20for%20Kepori%20feedback-admin%20Issues%20only" target="_blank" rel="noopener noreferrer">打开 GitHub 配置页 ↗</a></details>
-        </form>
-        <form id="unlock-form" hidden><p class="subtle">输入此浏览器设置的本机密码。</p><label class="field" for="unlock-password">本机解锁密码<input id="unlock-password" type="password" required autocomplete="current-password"></label><button class="button connect-button" type="submit">解锁</button><button id="forget-device" class="text-button" type="button">忘记此设备，重新配置</button></form>
-        <p id="login-message" class="notice" role="status" aria-live="polite" hidden></p><p class="login-footnote">密钥在本机加密保存，解锁密码不会上传。</p>
+          <p>仅使用 Kepori-App/feedback-admin 的 Issues 读写、Metadata 只读密钥。</p><a id="create-token" class="text-link" href="https://github.com/settings/personal-access-tokens/new?name=Kepori%20Feedback%20Admin&amp;target_name=Kepori-App&amp;expires_in=365&amp;issues=write&amp;description=Browser%20admin%20for%20Kepori%20feedback-admin%20Issues%20only" target="_blank" rel="noopener noreferrer">配置管理密钥 ↗</a>
+        </form></details>
+        <details class="setup-help"><summary>登录帮助</summary><p>换设备：在原设备登录后，点右上角“登录与设备”下载加密登录文件。在这里导入，用原解锁密码登录。</p><p>没有登录文件或忘记密码时，可重新配置管理密钥。只有具备私有反馈仓库写入权限的账号可以管理。</p><button id="forget-device" class="text-button" type="button">清除此设备的登录配置</button></details>
+        <input id="connection-file" type="file" accept=".json,application/json" hidden>
       </div>
     </section>
     <section id="workspace" hidden aria-labelledby="workspace-title">

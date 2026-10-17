@@ -1,8 +1,8 @@
-import { STATUSES } from "./domain.js?v=20261017-11";
-import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-11";
-import { el, button, badge, date } from "./views.js?v=20261017-11";
-import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-11";
-import { duplicateControls } from "./duplicate.js?v=20261017-11";
+import { STATUSES } from "./domain.js?v=20261017-12";
+import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-12";
+import { el, button, badge, date } from "./views.js?v=20261017-12";
+import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-12";
+import { duplicateControls } from "./duplicate.js?v=20261017-12";
 
 function choiceButtons(values, selected, action, label) {
   const row = el("div", "action-row choice-row"); row.setAttribute("role", "group"); row.setAttribute("aria-label", label);
@@ -20,7 +20,9 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   root.dataset.feedbackId = record.public_id;
   root.append(el("span", "eyebrow muted", `${record.public_id} · ${date(record.created_at)}`), el("h2", "inspector-title", record.title));
   const tags = el("div", "record-badges");
-  tags.append(badge(categoryLabel(record.category)), badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
+  tags.append(badge(categoryLabel(record.category)));
+  if (record.removed) tags.append(badge("已移除 · 不公开、不计数"));
+  else tags.append(badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
   root.append(tags, el("p", "feedback-text", record.description));
   const files = record.published_files?.filter(item => record.source_files?.some(source => source.id === item.sourceId)) || [];
   if (files.length) {
@@ -32,6 +34,12 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   contact.append(el("span", "subtle", "联系邮箱 · 仅管理员可见"), el("strong", "", record.email),
     button(`此邮箱有效 ${group?.valid || 0} / 3 条，查看全部 →`, () => actions.member(record.email), "text-button contact-total"));
   root.append(contact);
+  if (record.removed) {
+    const restore = button("恢复反馈", () => actions.send(record, "removed", false)); restore.disabled = pending;
+    const removed = el("section", "moderation-section");
+    removed.append(el("p", "subtle", "这条反馈已移入回收站。恢复后重新公开，并按原有标记计数。"), restore);
+    root.append(removed); return root;
+  }
   const form = el("fieldset", "action-sections");
   form.disabled = pending;
   const validity = el("section", "action-section");
@@ -55,7 +63,10 @@ export function feedbackDetail(record, group, feedback, pending, actions) {
   replyField.setAttribute("aria-label", "公开回复内容"); replyField.placeholder = "例如：感谢建议，已安排到下一版。"; replyField.value = record.reply || "";
   replyField.dataset.initial = record.reply || "";
   reply.append(replyField, button("保存公开回复", () => actions.send(record, "reply", replyField.value)), el("p", "subtle", "留空保存可清除回复。这里的文字所有人可见。"));
-  form.append(validity, status, category, reply); root.append(form);
+  const moderation = el("section", "moderation-section");
+  moderation.append(button("移入回收站", () => actions.send(record, "removed", true), "text-button"),
+    el("p", "subtle", "从公开页移除并停止计数，之后可恢复。"));
+  form.append(validity, status, category, reply, moderation); root.append(form);
   return root;
 }
 
@@ -64,6 +75,7 @@ export function captureDraft(inspector) {
   if (!panel) return null;
   const reply = panel.querySelector(".reply-input");
   const search = panel.querySelector(".duplicate-box input");
+  if (!reply || !search) return null;
   const active = document.activeElement;
   return { id: panel.dataset.feedbackId,
     reply: reply.value !== reply.dataset.initial ? reply.value : undefined,
@@ -78,7 +90,7 @@ export function captureDraft(inspector) {
 
 export function restoreDraft(inspector, draft) {
   const panel = inspector.querySelector("[data-feedback-id]");
-  if (!draft || !panel || draft.id !== panel.dataset.feedbackId) return;
+  if (!draft || !panel || draft.id !== panel.dataset.feedbackId || !panel.querySelector(".reply-input")) return;
   panel.querySelector(".duplicate-box").open = draft.duplicateOpen;
   panel.querySelector(".reply-section").open = draft.replyOpen;
   if (panel.querySelector(".admin-attachments")) panel.querySelector(".admin-attachments").open = draft.attachmentsOpen || false;
@@ -98,7 +110,8 @@ export function memberDetail(group, pending, actions) {
   root.append(el("span", "eyebrow muted", "同一邮箱 · 持续累计"), el("h2", "inspector-title", group.email));
   const count = el("div", "member-progress");
   count.append(el("strong", "", String(group.valid)), el("span", "", "/ 3 条有效反馈"));
-  root.append(count, el("p", "subtle", `共 ${group.records.length} 条反馈，其中 ${group.duplicates} 条重复。不按月清零。`));
+  const removedCount = group.records.filter(record => record.removed).length;
+  root.append(count, el("p", "subtle", `共 ${group.records.length} 条反馈，${group.duplicates} 条重复${removedCount ? `，${removedCount} 条已移除` : ""}。不按月清零。`));
   const reward = el("div", "member-reward");
   reward.append(el("h3", "", group.issued ? "已记录发码" : group.valid >= 3 ? "已达标，可以联系发码" : "继续累计中"), el("p", "subtle", "累计三条有效且不重复反馈，可获 48 元解锁终身会员的资格。"));
   const email = el("a", "button secondary small", "打开邮箱联系用户 ↗");
@@ -112,7 +125,7 @@ export function memberDetail(group, pending, actions) {
   const history = el("div", "member-history");
   for (const record of [...group.records].sort((a, b) => b.created_at.localeCompare(a.created_at))) {
     const link = button("", () => actions.feedback(record.public_id), "history-link");
-    link.append(el("span", "subtle", `${record.public_id} · ${date(record.created_at)} · ${categoryLabel(record.category)} · ${record.validity}`), el("strong", "", record.title)); history.append(link);
+    link.append(el("span", "subtle", `${record.public_id} · ${date(record.created_at)} · ${categoryLabel(record.category)} · ${record.removed ? "已移除 · 不计数" : record.validity}`), el("strong", "", record.title)); history.append(link);
   }
   root.append(history); return root;
 }

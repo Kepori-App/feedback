@@ -1,4 +1,4 @@
-import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-11';
+import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-12';
 
 export function el(tag, className = "", text = "") {
   const node = document.createElement(tag);
@@ -38,8 +38,10 @@ export function feedbackRow(record, selected, pending, action) {
   const top = el("span", "record-top");
   top.append(el("span", "record-id", record.public_id), el("span", "subtle", date(record.created_at)));
   const badges = el("span", "record-badges");
-  badges.append(badge(categoryLabel(record.category)), badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
-  if (record.suspected && record.validity === "待确认") badges.append(badge("疑似重复"));
+  badges.append(badge(categoryLabel(record.category)));
+  if (record.removed) badges.append(badge("已移除 · 不计数"));
+  else badges.append(badge(record.validity, record.validity === "有效"), badge(statusLabel(record.status, record.category)));
+  if (!record.removed && record.suspected && record.validity === "待确认") badges.append(badge("疑似重复"));
   if (pending) badges.append(badge("同步中…"));
   node.append(top, el("strong", "record-title", record.title), el("span", "record-contact", record.email), badges);
   return node;

@@ -80,7 +80,7 @@ select {appearance:none;-webkit-appearance:none;min-height:44px;max-width:160px;
 .empty p {font-size:13px;margin:0 0 16px}
 .list-footer {text-align:center;padding:24px 0 0}
 .sync-note {font-size:11px;color:var(--muted);margin:22px 0 36px}
-.rules {border-block:1px solid var(--line);font-size:12px;color:var(--muted);padding:16px 0;margin-bottom:22px}
+.rules {border-top:1px solid var(--line);font-size:12px;color:var(--muted);padding:16px 0;margin-bottom:0}
 .rules summary {color:var(--ink);font-size:13px;min-height:26px;align-content:center}
 .rule-copy {padding-top:12px;line-height:1.9}
 .rule-copy p {margin:8px 0 14px}

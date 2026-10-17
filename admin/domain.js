@@ -1,4 +1,4 @@
-import { STATUSES, CATEGORIES, categoryOf } from '../feedback-model.js?v=20261017-11';
+import { STATUSES, CATEGORIES, categoryOf } from '../feedback-model.js?v=20261017-12';
 export { STATUSES };
 export const VALIDITIES = ["待确认", "有效", "重复", "无效"];
 
@@ -16,7 +16,8 @@ export function decodeRecord(issue) {
     throw new Error(`F-${issue.number} 的状态格式异常，已停止加载。`);
   }
   if (data.kind === "feedback" && data.category !== undefined && !Object.hasOwn(CATEGORIES, data.category)) throw new Error(`F-${issue.number} 的分类格式异常，已停止加载。`);
-  return { ...data, ...(data.kind === "feedback" ? { category: categoryOf(data.category) } : {}), issue_number: issue.number, public_id: `F-${issue.number}`,
+  if (data.kind === "feedback" && data.removed !== undefined && typeof data.removed !== "boolean") throw new Error(`F-${issue.number} 的回收站状态异常，已停止加载。`);
+  return { ...data, ...(data.kind === "feedback" ? { category: categoryOf(data.category), removed: data.removed === true } : {}), issue_number: issue.number, public_id: `F-${issue.number}`,
     suspected: issue.labels?.some(label => label.name === "疑似重复") || false };
 }
 
@@ -29,8 +30,8 @@ export function groupMembers(records) {
     if (record.kind === "member") { group.member = record; group.issued = record.issued === true; }
     else {
       group.records.push(record);
-      if (record.validity === "有效" && !record.duplicate_of) group.valid++;
-      if (record.validity === "重复") group.duplicates++;
+      if (!record.removed && record.validity === "有效" && !record.duplicate_of) group.valid++;
+      if (!record.removed && record.validity === "重复") group.duplicates++;
     }
   }
   return [...groups.values()].filter(group => group.records.length)
@@ -42,6 +43,7 @@ export function duplicateTarget(source, targetId, records) {
   let target = lookup.get(targetId);
   const visited = new Set([source.public_id]);
   while (target) {
+    if (source.removed || target.removed) throw new Error("请先恢复已移除的反馈，再设置重复关联。");
     if (visited.has(target.public_id)) throw new Error("不能关联自身，也不能形成重复循环。");
     visited.add(target.public_id);
     if (!target.duplicate_of) return target;
@@ -55,6 +57,8 @@ export function operation(record, type, value, feedback) {
     if (type !== "issued" || typeof value !== "boolean") throw new Error("发码操作无效。");
     return { body: value ? "/已发放" : "/撤销发放", expected: { issued: value } };
   }
+  if (type === "removed" && typeof value === "boolean") return { body: value ? "/移除" : "/恢复", expected: { removed: value } };
+  if (record.removed) throw new Error("请先恢复这条反馈，再修改处理结果。");
   if (type === "status" && STATUSES.includes(value)) return { body: `/状态 ${value}`, expected: { status: value } };
   if (type === "category" && Object.hasOwn(CATEGORIES, value)) return { body: `/分类 ${value}`, expected: { category: value } };
   if (type === "validity" && ["待确认", "有效", "无效"].includes(value)) {

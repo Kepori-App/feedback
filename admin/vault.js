@@ -2,6 +2,33 @@ const KEY = "kepori-feedback-admin-vault-v1";
 const encoder = new TextEncoder();
 const base64 = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes)));
 const bytes = text => Uint8Array.from(atob(text), char => char.charCodeAt(0));
+const REPOSITORY = "Kepori-App/feedback-admin";
+
+export function validateVault(vault) {
+  if (!vault || typeof vault !== "object" || Array.isArray(vault) ||
+      Object.keys(vault).sort().join(",") !== "ciphertext,iv,salt,version" || vault.version !== 1) throw new Error("登录文件格式不正确。");
+  try {
+    for (const key of ["salt", "iv", "ciphertext"]) {
+      if (typeof vault[key] !== "string" || vault[key].length > 4096 || !/^[A-Za-z0-9+/]+={0,2}$/.test(vault[key])) throw new Error("format");
+    }
+    if (bytes(vault.salt).length !== 16 || bytes(vault.iv).length !== 12 ||
+        bytes(vault.ciphertext).length < 64 || bytes(vault.ciphertext).length > 2048) throw new Error("size");
+  } catch { throw new Error("登录文件已损坏，请从原设备重新导出。"); }
+  return { version: 1, salt: vault.salt, iv: vault.iv, ciphertext: vault.ciphertext };
+}
+
+export function connectionFile(vault) {
+  return JSON.stringify({ format: "kepori-feedback-login", version: 1, repository: REPOSITORY,
+    vault: validateVault(vault) }, null, 2) + "\n";
+}
+export function readConnectionFile(text) {
+  if (typeof text !== "string" || text.length > 8192) throw new Error("请选择从管理页导出的登录文件。");
+  let file;
+  try { file = JSON.parse(text); } catch { throw new Error("无法读取登录文件，请重新选择。"); }
+  if (file?.format !== "kepori-feedback-login" || file.version !== 1 || file.repository !== REPOSITORY ||
+      Object.keys(file).sort().join(",") !== "format,repository,vault,version") throw new Error("这不是 Kepori 反馈管理的登录文件。");
+  return validateVault(file.vault);
+}
 
 async function derive(password, salt, usages) {
   const material = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveKey"]);
@@ -18,7 +45,7 @@ export async function seal(token, password) {
 }
 export async function unseal(vault, password) {
   try {
-    if (vault?.version !== 1) throw new Error("version");
+    validateVault(vault);
     const key = await derive(password, bytes(vault.salt), ["decrypt"]);
     const plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv: bytes(vault.iv) }, key, bytes(vault.ciphertext));
     return new TextDecoder().decode(plaintext);
