@@ -1,4 +1,4 @@
-import { GitHubAPI } from "./github.js";
+import { GitHubAPI } from "./github.js?v=20261017-2";
 import { savedVault, saveVault, forgetVault, seal, unseal } from "./vault.js";
 import { notice } from "./views.js";
 import { createDashboard } from "./dashboard.js";
