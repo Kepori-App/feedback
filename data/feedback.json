@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-20",
+      "category": "suggestion",
+      "title": "软件底边栏能否修改成苹果原生软件那样，左边三个合在一起，右边一个单独分离，另外滑动的时候可以设置成自动隐藏",
+      "description": "",
+      "nickname": "loophero",
+      "createdAt": "2026-10-17T15:27:48.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/fe5ed4a00de0e45da6141409566827ad197de3f520b2895d5ed83a53926f3a59.png",
+          "mimeType": "image/png",
+          "size": 476108
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-18",
       "category": "suggestion",
       "title": "抖音视频解析播放可以不带打水印吗，这样很影响观感，带水印看着太别扭，还不如直接在抖音看呢，为了避免侵权，可以在下载界面那里在强制加水印，这样也挺好",
@@ -55,7 +75,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢反馈，下个版本",
       "attachments": [
         {
           "path": "assets/uploads/0e3e65737f09018a7bca3abfe8003fd877d9c93fd74e751adf9bbc9f8c47df98.png",
