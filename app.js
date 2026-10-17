@@ -3,12 +3,13 @@ import { attachmentGallery, pendingAttachments } from './attachments.js?v=202610
 import { STATUSES, categoryLabel, statusLabel, visibleFeedback, validatePublic } from './feedback-model.js?v=20261017-17';
 import { pageWindow, renderPagination } from './pagination.js?v=20261017-17';
 import { installInputModality } from './input-modality.js?v=20261017-17';
+import { installPublicRefresh } from './public-refresh.js?v=20261017-18';
 
 installInputModality(document);
 const $ = selector => document.querySelector(selector);
 const list = $('#feedback-list'), dialog = $('#detail-dialog'), rules = $('#rules-dialog');
 let feedback = [], category = 'all', status = 'all', sort = 'newest', page = 1, selectedId = '', formUrl = '';
-let loadController = null, returnId = '', returnScroll = 0;
+let loadController = null, returnId = '', returnScroll = 0, publicRevision = '';
 const returnedFromForm = new URLSearchParams(location.search).get('submitted') === '1';
 function configureForm(url) {
   formUrl = /^https:\/\/tally\.so\/r\/[a-zA-Z0-9]+$/.test(url) ? url : '';
@@ -69,20 +70,27 @@ function openDetail(id, changeUrl = true) {
   if (!dialog.open) dialog.showModal();
   $('#close-dialog').focus({ preventScroll: true }); dialog.scrollTop = 0;
 }
-async function load() {
+async function load({ background = false } = {}) {
+  if (background && loadController) return;
   loadController?.abort(); const controller = new AbortController(); loadController = controller;
-  list.setAttribute('aria-busy', 'true');
+  if (!background) list.setAttribute('aria-busy', 'true');
   try {
     const response = await fetch('./data/feedback.json', { cache: 'no-cache', signal: controller.signal });
     if (!response.ok) throw new Error('暂时无法连接');
     const data = validatePublic(await response.json()); if (controller.signal.aborted) return;
-    feedback = data.feedback; configureForm(data.formUrl); render(true);
-    if (/^#F-\d+$/.test(location.hash)) openDetail(location.hash.slice(1), false);
+    const revision = JSON.stringify(data);
+    if (background && (revision === publicRevision || dialog.open || rules.open || document.activeElement?.matches('input, select, textarea') || document.getSelection()?.toString())) return;
+    const focusedId = document.activeElement?.closest('[data-feedback-id]')?.dataset.feedbackId;
+    publicRevision = revision; feedback = data.feedback; configureForm(data.formUrl); render(!background);
+    if (background && focusedId) document.querySelector(`[data-feedback-id="${focusedId}"]`)?.focus({ preventScroll: true });
+    if (!background && /^#F-\d+$/.test(location.hash)) openDetail(location.hash.slice(1), false);
   } catch {
-    if (controller.signal.aborted) return;
+    if (controller.signal.aborted || background) return;
     list.setAttribute('aria-busy', 'false'); $('#pagination').hidden = true;
     $('#total-count').textContent = '加载失败'; $('#result-info').textContent = '反馈暂时无法加载，请重试。';
     list.replaceChildren(empty('反馈暂时没有加载出来', '请稍后重试，或通过页脚联系开发者。', { label: '重新加载', run: load }));
+  } finally {
+    if (loadController === controller) { loadController = null; list.setAttribute('aria-busy', 'false'); }
   }
 }
 for (const button of document.querySelectorAll('[data-category]')) button.addEventListener('click', () => {
@@ -123,3 +131,4 @@ $('#dismiss-submission').addEventListener('click', () => {
 });
 window.addEventListener('pagehide', () => { loadController?.abort(); dialog.querySelectorAll('video').forEach(video => video.pause()); });
 updateProgressOptions(); configureForm('https://tally.so/r/6DJpgN'); load();
+if (returnedFromForm) installPublicRefresh(() => load({ background: true }));
