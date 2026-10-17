@@ -22,7 +22,8 @@ export class GitHubAPI {
     const timer = setTimeout(() => controller.abort(), 30000);
     let response;
     try {
-      response = await this.transport(BASE + path, {
+      const transport = this.transport;
+      response = await transport(BASE + path, {
         method, credentials: "omit", cache: "no-store", redirect: "error", referrerPolicy: "no-referrer",
         signal: controller.signal,
         headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${this.#token}`,
