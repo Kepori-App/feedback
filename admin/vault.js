@@ -3,6 +3,8 @@ const encoder = new TextEncoder();
 const base64 = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes)));
 const bytes = text => Uint8Array.from(atob(text), char => char.charCodeAt(0));
 const REPOSITORY = "Kepori-App/feedback-admin";
+// Retire the accidentally downloaded local integration fixture, never a real credential.
+const RETIRED_TEST = {"salt": "CKWoZ+e2EIjSWLB960UWww==", "iv": "AITnAPOCSUpq6HmE"};
 
 export function validateVault(vault) {
   if (!vault || typeof vault !== "object" || Array.isArray(vault) ||
@@ -14,6 +16,7 @@ export function validateVault(vault) {
     if (bytes(vault.salt).length !== 16 || bytes(vault.iv).length !== 12 ||
         bytes(vault.ciphertext).length < 64 || bytes(vault.ciphertext).length > 2048) throw new Error("size");
   } catch { throw new Error("登录文件已损坏，请从原设备重新导出。"); }
+  if (vault.salt === RETIRED_TEST.salt && vault.iv === RETIRED_TEST.iv) throw new Error("这是一份联调测试登录文件。请回电脑上的正式管理页重新下载登录文件。");
   return { version: 1, salt: vault.salt, iv: vault.iv, ciphertext: vault.ciphertext };
 }
 
@@ -31,8 +34,11 @@ export function readConnectionFile(text) {
 }
 
 async function derive(password, salt, usages) {
-  const material = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveKey"]);
-  return crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 600000, hash: "SHA-256" },
+  if (!globalThis.crypto?.subtle || globalThis.isSecureContext === false) {
+    throw new Error("当前页面无法使用安全解密。请在 Safari 中打开 https://kepori-app.github.io/feedback/admin/ 后重试。");
+  }
+  const material = await globalThis.crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveKey"]);
+  return globalThis.crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 600000, hash: "SHA-256" },
     material, { name: "AES-GCM", length: 256 }, false, usages);
 }
 export async function seal(token, password) {
@@ -44,12 +50,20 @@ export async function seal(token, password) {
   return { version: 1, salt: base64(salt), iv: base64(iv), ciphertext: base64(ciphertext) };
 }
 export async function unseal(vault, password) {
+  validateVault(vault);
+  let key;
+  try { key = await derive(password, bytes(vault.salt), ["decrypt"]); }
+  catch (error) {
+    if (error.name === "NotSupportedError") throw new Error("此浏览器未支持所需解密方式，请更新系统后使用 Safari，或换用其他现代浏览器。");
+    throw error;
+  }
   try {
-    validateVault(vault);
-    const key = await derive(password, bytes(vault.salt), ["decrypt"]);
     const plaintext = await crypto.subtle.decrypt({ name: "AES-GCM", iv: bytes(vault.iv) }, key, bytes(vault.ciphertext));
     return new TextDecoder().decode(plaintext);
-  } catch { throw new Error("本机密码不正确，或保存的配置已损坏。可重试，或忘记此设备后重新配置。"); }
+  } catch (error) {
+    if (error.name === "NotSupportedError") throw new Error("此浏览器未支持所需解密方式，请更新系统后使用 Safari 重试。");
+    throw new Error("密码与这份登录文件不匹配，或文件已损坏。请确认使用原设备的解锁密码和从正式管理页下载的文件。");
+  }
 }
 export function savedVault() {
   try { return JSON.parse(localStorage.getItem(KEY)); }
