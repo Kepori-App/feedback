@@ -1,4 +1,4 @@
-import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-4';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-5';
 
 export const element = (tag, className, text) => {
   const node = document.createElement(tag);

@@ -1,6 +1,6 @@
 import { STATUSES, duplicateTarget, semanticCandidates } from "./domain.js";
-import { el, button, badge, date } from "./views.js?v=20261017-4";
-import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-4";
+import { el, button, badge, date } from "./views.js?v=20261017-5";
+import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-5";
 
 export function feedbackDetail(record, group, feedback, pending, actions) {
   const root = el("div", "detail-panel");

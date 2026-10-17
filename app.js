@@ -1,5 +1,5 @@
-import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-4';
-import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-4';
+import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-5';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-5';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#feedback-list');

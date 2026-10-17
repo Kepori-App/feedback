@@ -52,7 +52,9 @@ export function attachmentGallery(items, { compact = false, open } = {}) {
     const caption = node('figcaption', '');
     const link = node('a', 'text-link', image ? '查看原图 ↗' : '打开原视频 ↗');
     link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-    caption.append(node('span', '', `${label} · ${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 1 }).format(file.size / 1024 / 1024)} MB`), link);
+    const small = file.size < 1024 * 1024;
+    const size = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 1 }).format(file.size / (small ? 1024 : 1024 * 1024));
+    caption.append(node('span', '', `${label} · ${size} ${small ? 'KB' : 'MB'}`), link);
     figure.append(caption); root.append(figure);
   }
   root.hidden = !files.length;
