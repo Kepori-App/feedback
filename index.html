@@ -4,50 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="提交 Kepori 使用建议，查看公开反馈和处理进展。">
+  <meta name="description" content="反馈 Kepori 使用问题、分享改进建议，查看处理进展。无需注册。">
   <title>意见反馈 · Kepori</title>
   <link rel="icon" href="./assets/app-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=20261017-5">
-  <script type="module" src="./app.js?v=20261017-5"></script>
+  <link rel="stylesheet" href="./styles.css?v=20261017-6">
+  <script type="module" src="./app.js?v=20261017-6"></script>
 </head>
 <body>
   <a class="skip-link" href="#feedback">跳到反馈列表</a>
   <header class="header wrap">
     <a class="brand" href="https://kepori.app"><img src="./assets/app-icon.png" width="26" height="26" alt=""><span>Kepori</span></a>
-    <a class="button small" data-submit href="#submit">提交反馈 <span aria-hidden="true">＋</span></a>
+    <a class="button small" data-submit href="https://tally.so/r/6DJpgN">提交反馈 <span aria-hidden="true">＋</span></a>
   </header>
   <main class="wrap public-main">
     <section class="intro" aria-labelledby="page-title">
       <h1 id="page-title">意见反馈</h1>
-      <p>提交建议、图片或视频，看看大家的反馈与处理进展。</p>
-      <p class="reward-note">累计 3 条有效且不重复的反馈，可获得 <strong>48 元终身会员优惠资格</strong>。<a href="#rules">查看规则</a></p>
+      <p>反馈问题，分享想法，查看每一步进展。</p>
+      <p class="reward-note">累计 3 条有效反馈，可获 <strong>48 元终身会员优惠资格</strong>。<a data-rules href="#rules">活动说明</a></p>
     </section>
-    <section id="feedback" aria-labelledby="board-title">
-      <div class="section-heading"><h2 id="board-title">全部反馈</h2><span id="total-count" class="subtle">— 条</span></div>
+    <div id="submission-note" class="submission-note" role="status" hidden><div><strong>感谢你的反馈</strong><p>内容通常一小时内公开，处理进展会持续更新。联系邮箱不会公开。</p></div><button id="dismiss-submission" class="icon-button" aria-label="关闭提交提示">×</button></div>
+    <section id="feedback" aria-label="公开反馈">
+      <div class="board-nav"><div class="category-filter" role="group" aria-label="反馈分类"><button type="button" data-category="all" class="active" aria-pressed="true">全部</button><button type="button" data-category="bug" aria-pressed="false">问题反馈</button><button type="button" data-category="suggestion" aria-pressed="false">改进建议</button><button type="button" data-category="other" aria-pressed="false">其他</button></div><span id="total-count" class="subtle">— 条</span></div>
       <div class="tools">
-        <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索反馈</span><input id="search" type="search" placeholder="搜索已有反馈" autocomplete="off"></label>
-        <label class="sr-only" for="status-filter">处理状态</label><select id="status-filter"><option value="全部">全部状态</option><option>待评估</option><option>已采纳</option><option>开发中</option><option>已完成</option><option>暂不采纳</option></select>
-        <label class="sr-only" for="sort">排序方式</label><select id="sort"><option value="newest">最新反馈</option><option value="oldest">最早反馈</option><option value="updated">优先看进展</option></select>
+        <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="sr-only">搜索反馈</span><input id="search" type="search" placeholder="先搜搜，看看有没有相同反馈" autocomplete="off"></label>
+        <label class="sr-only" for="status-filter">处理进展</label><select id="status-filter"><option value="all">全部进展</option></select><button id="reset-filters" class="text-link" hidden>清除筛选</button>
       </div>
       <p id="result-info" class="sr-only" role="status" aria-live="polite"></p>
       <div id="feedback-list" class="feedback-list" aria-busy="true"><div class="empty"><p>正在加载反馈…</p></div></div>
       <div id="list-footer" class="list-footer" hidden><button id="load-more" class="button secondary small">加载更多</button></div>
-      <p class="sync-note">无需注册。提交后通常一小时内同步，处理结果会持续更新。</p>
+      <p class="sync-note">无需注册 · 新反馈通常一小时内出现 · 按最新提交排列</p>
     </section>
     <details id="rules" class="rules">
-      <summary>活动规则与隐私</summary>
+      <summary>活动说明与隐私</summary>
       <div class="rule-copy">
-        <p><strong>哪些反馈计数？</strong>清楚描述问题或使用场景、对产品有帮助，且不与已有建议重复，经开发者标记“有效”后计入。是否计数与是否采纳分别判断。</p>
-        <p><strong>重复怎么办？</strong>表达不同但需求相同的反馈，经人工确认后显示“重复 · 不计数”，并链接原建议。有实质新场景或新信息时，可确认独立贡献。</p>
-        <p><strong>隔几个月也能累计。</strong>相同联系邮箱持续累计，不按月清零。请一直使用同一邮箱；换邮箱或统计有疑问时，联系开发者核对。</p>
-        <p><strong>达标后手动发码。</strong>累计 3 条有效且不重复的反馈，获得 48 元购买终身会员的资格，每个邮箱限一次。开发者通过联系邮箱手动发放兑换方式，此页面不收款、不自动发码。</p>
-        <p><strong>图片与视频选填。</strong>每条最多 3 个附件，单个不超过 10MB。附件会随反馈公开，可在详情中查看图片或播放视频。</p>
-        <p><strong>联系邮箱不公开。</strong>公开内容包括昵称、反馈、附件、处理状态、计数结果和开发者回复。请先遮挡图片、视频中的隐私，勿在正文或附件中包含邮箱、手机号、密码等信息。</p>
+        <p><strong>问题和建议都可以计数。</strong>清楚描述问题或使用场景、对产品有帮助，且不与已有反馈重复，经开发者标记“有效”后计入。处理进展与是否计数分别判断。</p>
+        <p><strong>相同需求只计一次。</strong>同一问题换种说法、换个分类提交，经人工确认后仍显示“重复 · 不计数”，并链接原反馈。有实质新场景或新信息时，可确认独立贡献。</p>
+        <p><strong>同一邮箱持续累计。</strong>有效反馈不按月清零。请一直使用同一联系邮箱；换邮箱或统计有疑问时，联系开发者核对。</p>
+        <p><strong>满三条后手动发码。</strong>累计 3 条有效且不重复的反馈，可获得 48 元购买终身会员的资格，每个邮箱限一次。开发者通过联系邮箱手动发放兑换方式。</p>
+        <p><strong>图片和视频选填。</strong>每条最多 3 个附件，单个不超过 10MB。附件会随反馈公开，可在详情中查看图片或播放视频。</p>
+        <p><strong>联系邮箱不公开。</strong>昵称、反馈、附件、处理进展、计数结果和开发者回复会公开。请先遮挡附件中的隐私，勿包含邮箱、手机号、密码等信息。</p>
       </div>
     </details>
-    <section id="submit" class="submit-note"><p id="form-message">反馈表单正在准备中。</p><a id="form-link" class="text-link" href="https://tally.so" target="_blank" rel="noopener noreferrer" hidden>打开反馈表单 ↗</a></section>
   </main>
-  <footer class="footer wrap"><span>慢慢打磨，一起变好。</span><div><a id="contact-link" href="mailto:jinwandalaohu940@gmail.com">联系开发者</a><a href="https://kepori.app/privacy">隐私政策</a><a href="./admin/">管理入口</a></div></footer>
+  <footer class="footer wrap"><span>一起把 Kepori 做得更好。</span><div><a href="mailto:jinwandalaohu940@gmail.com">联系开发者</a><a href="https://kepori.app/privacy">隐私政策</a><a href="./admin/">管理入口</a></div></footer>
   <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><span class="subtle" id="detail-id"></span><button id="close-dialog" class="icon-button" aria-label="关闭反馈详情">×</button></div><div id="detail-content"></div><div class="dialog-footer"><button id="copy-link" class="button secondary small">复制链接</button><span id="copy-status" class="subtle" role="status"></span></div></dialog>
   <noscript><p class="wrap">请启用 JavaScript 查看反馈，或通过页脚联系开发者。</p></noscript>
 </body>

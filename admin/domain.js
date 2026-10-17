@@ -1,4 +1,5 @@
-export const STATUSES = ["待评估", "已采纳", "开发中", "已完成", "暂不采纳"];
+import { STATUSES, CATEGORIES, categoryOf } from '../feedback-model.js?v=20261017-6';
+export { STATUSES };
 export const VALIDITIES = ["待确认", "有效", "重复", "无效"];
 
 export function decodeRecord(issue) {
@@ -14,7 +15,8 @@ export function decodeRecord(issue) {
   if (data.kind === "feedback" && (!STATUSES.includes(data.status) || !VALIDITIES.includes(data.validity))) {
     throw new Error(`F-${issue.number} 的状态格式异常，已停止加载。`);
   }
-  return { ...data, issue_number: issue.number, public_id: `F-${issue.number}`,
+  if (data.kind === "feedback" && data.category !== undefined && !Object.hasOwn(CATEGORIES, data.category)) throw new Error(`F-${issue.number} 的分类格式异常，已停止加载。`);
+  return { ...data, ...(data.kind === "feedback" ? { category: categoryOf(data.category) } : {}), issue_number: issue.number, public_id: `F-${issue.number}`,
     suspected: issue.labels?.some(label => label.name === "疑似重复") || false };
 }
 
@@ -54,6 +56,7 @@ export function operation(record, type, value, feedback) {
     return { body: value ? "/已发放" : "/撤销发放", expected: { issued: value } };
   }
   if (type === "status" && STATUSES.includes(value)) return { body: `/状态 ${value}`, expected: { status: value } };
+  if (type === "category" && Object.hasOwn(CATEGORIES, value)) return { body: `/分类 ${value}`, expected: { category: value } };
   if (type === "validity" && ["待确认", "有效", "无效"].includes(value)) {
     return { body: `/计数 ${value}`, expected: { validity: value, duplicate_of: null } };
   }

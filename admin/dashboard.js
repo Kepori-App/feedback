@@ -1,11 +1,11 @@
-import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js";
-import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-5";
-import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-5";
+import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js?v=20261017-6";
+import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-6";
+import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-6";
 
 const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效"], members: ["待发码", "全部用户", "已发码", "累计中"] };
 export function createDashboard(api) {
   const byId = id => document.getElementById(id);
-  let records = [], groups = [], view = "feedback", filter = "待确认", selected = null, limit = 30;
+  let records = [], groups = [], view = "feedback", filter = "待确认", category = "all", selected = null, limit = 30;
   let stopped = false, refreshing = false, timer, summaryNumber, lastDetail = "", importRequested = false;
   const pending = new Map(), sending = new Set(), removers = [];
   const listen = (node, event, handler) => { node.addEventListener(event, handler); removers.push(() => node.removeEventListener(event, handler)); };
@@ -14,7 +14,7 @@ export function createDashboard(api) {
   const actions = { api, send, feedback: id => selectView("feedback", "全部反馈", id), member: email => selectView("members", "全部用户", email) };
 
   function selectView(nextView, nextFilter, selection = null) {
-    view = nextView; filter = nextFilter; selected = selection; limit = 30; lastDetail = "";
+    view = nextView; filter = nextFilter; category = "all"; selected = selection; limit = 30; lastDetail = "";
     byId("admin-search").value = ""; render();
   }
   function choose(id) {
@@ -35,8 +35,9 @@ export function createDashboard(api) {
       filterControl.dataset.view = view;
     }
     filterControl.value = filter;
+    byId("admin-category").hidden = view !== "feedback"; byId("admin-category").value = category;
     const query = byId("admin-search").value.trim().toLowerCase();
-    let visible = view === "feedback" ? items.filter(item => (filter === "全部反馈" || item.validity === filter) &&
+    let visible = view === "feedback" ? items.filter(item => (category === "all" || item.category === category) && (filter === "全部反馈" || item.validity === filter) &&
       `${item.public_id} ${item.title} ${item.description} ${item.email}`.toLowerCase().includes(query))
       .sort((a, b) => b.created_at.localeCompare(a.created_at)) : groups.filter(group =>
       (filter === "全部用户" || (filter === "待发码" && group.valid >= 3 && !group.issued) ||
@@ -53,7 +54,7 @@ export function createDashboard(api) {
     byId("more").hidden = visible.length <= limit;
     const current = all.find(item => key(item) === selected);
     const owner = current && view === "feedback" ? groups.find(group => group.email === current.email) : null;
-    const detailData = current && (view === "feedback" ? [current.public_id, current.title, current.description,
+    const detailData = current && (view === "feedback" ? [current.public_id, current.category, current.title, current.description,
       current.email, current.created_at, current.status, current.validity, current.duplicate_of, current.reply, current.suspected,
       current.published_files, current.source_files?.map(item => item.id)] :
       [current.email, current.valid, current.duplicates, current.issued, current.member?.issue_number,
@@ -137,6 +138,7 @@ export function createDashboard(api) {
   listen(byId("import"), "click", requestImport);
   listen(byId("more"), "click", () => { limit += 30; render(); });
   listen(byId("admin-filter"), "change", event => { filter = event.target.value; selected = null; limit = 30; render(); });
+  listen(byId("admin-category"), "change", event => { category = event.target.value; selected = null; limit = 30; render(); });
   listen(byId("admin-search"), "input", () => { limit = 30; selected = null; render(); });
   document.querySelectorAll("[data-view]").forEach(node => listen(node, "click", () => selectView(node.dataset.view, FILTERS[node.dataset.view][0])));
   byId("import").disabled = true;

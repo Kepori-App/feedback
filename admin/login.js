@@ -1,7 +1,7 @@
 import { GitHubAPI } from "./github.js?v=20261017-2";
 import { savedVault, saveVault, forgetVault, seal, unseal } from "./vault.js";
 import { notice } from "./views.js";
-import { createDashboard } from "./dashboard.js?v=20261017-5";
+import { createDashboard } from "./dashboard.js?v=20261017-6";
 
 export function startLogin() {
   const byId = id => document.getElementById(id);

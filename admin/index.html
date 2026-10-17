@@ -8,9 +8,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
   <title>反馈管理 · Kepori</title>
   <link rel="icon" href="../assets/app-icon.png">
-  <link rel="stylesheet" href="../styles.css?v=20261017-5">
-  <link rel="stylesheet" href="./admin.css?v=20261017-5">
-  <script type="module" src="./app.js?v=20261017-5"></script>
+  <link rel="stylesheet" href="../styles.css?v=20261017-6">
+  <link rel="stylesheet" href="./admin.css?v=20261017-6">
+  <script type="module" src="./app.js?v=20261017-6"></script>
 </head>
 <body class="admin-body">
   <a class="skip-link" href="#main">跳到管理内容</a>
@@ -35,7 +35,7 @@
       <p id="workspace-message" class="notice" role="status" aria-live="polite" hidden></p>
       <div class="admin-grid"><section class="list-pane" aria-labelledby="list-title">
         <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索反馈或联系邮箱</span><input id="admin-search" type="search" autocomplete="off" placeholder="搜索反馈或邮箱"></label>
-        <div class="list-heading"><h2 id="list-title" class="sr-only">待确认的反馈</h2><label class="sr-only" for="admin-filter">筛选管理记录</label><select id="admin-filter"></select><span id="list-count" class="subtle"></span></div>
+        <div class="list-heading"><h2 id="list-title" class="sr-only">待确认的反馈</h2><label class="sr-only" for="admin-filter">筛选管理记录</label><select id="admin-filter"></select><label class="sr-only" for="admin-category">反馈分类</label><select id="admin-category"><option value="all">全部分类</option><option value="bug">问题反馈</option><option value="suggestion">改进建议</option><option value="other">其他</option></select><span id="list-count" class="subtle"></span></div>
         <div id="admin-list" aria-busy="false"></div><button id="more" class="button secondary small" hidden>加载更多</button>
       </section><section id="inspector" class="inspector" aria-label="选中记录详情"></section></div>
     </section>

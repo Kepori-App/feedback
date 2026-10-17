@@ -93,3 +93,15 @@
   .login-layout {padding:44px 0 70px}.login-card {padding:0 10px}.record-row {padding:13px 11px}
 }
 @media(max-width:360px) {.admin-heading {flex-direction:column}.heading-actions {width:100%}.admin-metrics {width:100%}.view-tab {font-size:13px}}
+.list-heading {flex-wrap:wrap;gap:8px}
+.list-heading #admin-filter,.list-heading #admin-category {max-width:114px;flex:1;min-width:0;font-size:11px;padding-inline:7px}
+.list-heading #list-count {white-space:nowrap;margin-left:auto}
+.choice-row {display:flex;flex-wrap:wrap;gap:8px}
+.choice-button {min-height:42px!important}
+.choice-button.active,.choice-button.active:disabled {background:var(--cream);border-color:#bbbcc2;color:var(--ink);opacity:1;font-weight:550}
+.candidate-row {display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}
+.candidate-row .candidate-link {flex:1;min-width:120px;overflow-wrap:anywhere}
+.candidate-row .button {flex-shrink:0}
+.duplicate-controls .candidate-box {margin:14px 0}
+.admin-attachments {margin:12px 0;color:var(--muted);font-size:12px}
+.admin-attachments>summary {min-height:40px;align-content:center;cursor:pointer}

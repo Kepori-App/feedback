@@ -116,3 +116,32 @@ dialog h2 {font-size:22px;font-weight:550;line-height:1.6;overflow-wrap:anywhere
 .media-item video {background:#171717;min-height:120px}
 .media-item figcaption {display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:7px}
 .media-pending {margin:12px 0}
+/* A quiet browsing surface: type first, then optional search/progress. */
+.intro {padding:42px 0 30px}
+.intro .reward-note {background:none;padding:0;margin:17px 0 0;font-size:12px;line-height:1.9}
+.reward-note a {color:var(--muted);margin-left:8px}
+.board-nav {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.category-filter {display:flex;align-items:center;gap:5px;min-width:0}
+.category-filter button {border:0;padding:10px 13px;min-height:44px;min-width:44px;border-radius:8px;color:var(--muted);font-size:13px;white-space:nowrap;line-height:1.5}
+.category-filter button:hover {background:var(--cream);color:var(--ink)}
+.category-filter button.active {background:var(--cream);color:var(--ink);font-weight:550}
+.category-label {color:var(--muted);font-size:11px}
+.public-main .tools select {max-width:160px}
+.public-main .tools #reset-filters {margin-left:auto;border:0;padding:7px 0;min-height:40px;background:none;color:var(--muted);font-size:12px;white-space:nowrap}
+.submission-note {display:flex;align-items:flex-start;gap:16px;background:var(--cream);border:1px solid var(--line);border-radius:var(--small-radius);padding:16px;margin:0 0 26px}
+.submission-note>div {flex:1;min-width:0}
+.submission-note strong {font-size:13px;font-weight:550}
+.submission-note p {margin:5px 0 0;font-size:12px;color:var(--muted);line-height:1.8}
+.submission-note .icon-button {flex-shrink:0;background:var(--surface)}
+.public-main .empty {padding:54px 18px 62px}
+.public-main .sync-note {margin:24px 0 32px}
+@media(max-width:600px) {
+  .intro {padding:30px 0 25px}
+  .intro .reward-note {font-size:11px;margin-top:14px;padding:0}
+  .category-filter {gap:3px}
+  .category-filter button {padding:10px 9px;font-size:12px}
+  .board-nav {gap:6px;margin-bottom:13px}
+  .board-nav #total-count {font-size:11px;white-space:nowrap}
+  .public-main .tools select {flex:0 1 auto;max-width:160px;min-height:40px}
+  .public-main .sync-note {font-size:10px;line-height:1.9}
+}
