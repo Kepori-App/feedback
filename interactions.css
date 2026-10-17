@@ -1,0 +1,48 @@
+/* Shared interaction rhythm. Native controls keep their keyboard and focus behavior. */
+.button,.icon-button,.category-filter button,.choice-button,.record-row,.title-button,.media-thumb {
+  touch-action:manipulation;
+  transition:background-color var(--motion-feedback),border-color var(--motion-feedback),color var(--motion-feedback),box-shadow var(--motion-feedback),transform var(--motion-feedback) var(--ease-out);
+}
+.button:not(:disabled):active,.icon-button:not(:disabled):active,.category-filter button:active {transform:translateY(1px)}
+.search {transition:border-color var(--motion-feedback),box-shadow var(--motion-feedback)}
+.search:focus-within {border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.search input:focus-visible {outline:none}
+select {transition:border-color var(--motion-feedback),box-shadow var(--motion-feedback)}
+select:focus-visible {outline:2px solid var(--green);outline-offset:3px}
+.quiet-link,.footer a {transition:color var(--motion-feedback)}
+.category-filter button.active:hover {background:var(--ink);color:var(--on-ink)}
+@media(hover:hover) {
+  .button:not(:disabled):hover {box-shadow:0 3px 12px #20292312;transform:translateY(-1px)}
+  .title-button:hover,.quiet-link:hover,.footer a:hover {color:var(--green)}
+  .media-thumb:hover {border-color:var(--green);transform:translateY(-2px)}
+  .record-row:hover {border-color:var(--line)}
+}
+.record-row.selected {border-color:#28775f40;box-shadow:inset 2px 0 0 var(--green)}
+details>summary {display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;min-height:44px}
+details>summary::-webkit-details-marker {display:none}
+details>summary::after {content:'';width:14px;height:14px;flex-shrink:0;background:url('./assets/chevron-down.svg') center / contain no-repeat;transition:transform var(--motion-feedback) var(--ease-out)}
+details[open]>summary::after {transform:rotate(180deg)}
+.is-changing>.feedback-card,.is-changing>.empty {animation:feedback-enter var(--motion-state) var(--ease-out) both}
+@keyframes feedback-enter {from {opacity:0;transform:translateY(4px)}to {opacity:1;transform:translateY(0)}}
+dialog {opacity:0;transform:translateY(8px);box-shadow:0 20px 80px #20292324;transition:opacity var(--motion-state) var(--ease-out),transform var(--motion-state) var(--ease-out),display var(--motion-state) allow-discrete,overlay var(--motion-state) allow-discrete}
+dialog[open] {opacity:1;transform:translateY(0)}
+dialog::backdrop {opacity:0;background:#20292330;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:opacity var(--motion-state),display var(--motion-state) allow-discrete,overlay var(--motion-state) allow-discrete}
+dialog[open]::backdrop {opacity:1}
+@starting-style {
+  dialog[open] {opacity:0;transform:translateY(8px)}
+  dialog[open]::backdrop {opacity:0}
+}
+@media(prefers-color-scheme:dark) {
+  :root {color-scheme:dark;--bg:#141a17;--ink:#eff2eb;--muted:#a6b0a8;--surface:#202923;--line:#e1f5e51c;--cream:#29332c;--green:#96d5b7;--green-soft:#233b2e;--nav-surface:#171f19ed;--soft-shadow:0 4px 24px #00000020;--on-ink:#14261d;--ink-hover:#d9e4d8;--line-hover:#56675c;--positive-ink:#a9d6b8;--positive-bg:#233b2e;--info-ink:#b6cadd;--info-bg:#26343d;--duplicate-ink:#dbcba7;--duplicate-bg:#3b3527}
+  dialog {box-shadow:0 20px 80px #00000050}
+  dialog::backdrop {background:#00000060}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  *,*::before,*::after {animation:none!important;transition:none!important}
+  .button,.icon-button,.category-filter button,.media-thumb,dialog {transform:none!important}
+}
+@media(prefers-contrast:more) {
+  :root {--muted:var(--ink);--line:var(--ink)}
+  .header {background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+}

@@ -1,4 +1,4 @@
-import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-6';
+import { categoryLabel, statusLabel } from '../feedback-model.js?v=20261017-9';
 
 export function el(tag, className = "", text = "") {
   const node = document.createElement(tag);

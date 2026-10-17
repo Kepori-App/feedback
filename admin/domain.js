@@ -1,4 +1,4 @@
-import { STATUSES, CATEGORIES, categoryOf } from '../feedback-model.js?v=20261017-6';
+import { STATUSES, CATEGORIES, categoryOf } from '../feedback-model.js?v=20261017-9';
 export { STATUSES };
 export const VALIDITIES = ["待确认", "有效", "重复", "无效"];
 

@@ -1,5 +1,5 @@
-import { duplicateTarget, semanticCandidates } from './domain.js?v=20261017-6';
-import { el, button } from './views.js?v=20261017-6';
+import { duplicateTarget, semanticCandidates } from './domain.js?v=20261017-9';
+import { el, button } from './views.js?v=20261017-9';
 
 export function duplicateControls(record, feedback, actions) {
   const root = el('div', 'duplicate-controls');

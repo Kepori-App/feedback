@@ -1,10 +1,11 @@
-import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-6';
-import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-6';
-import { STATUSES, categoryLabel, statusLabel, visibleFeedback, validatePublic } from './feedback-model.js?v=20261017-6';
+import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-9';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-9';
+import { STATUSES, categoryLabel, statusLabel, visibleFeedback, validatePublic } from './feedback-model.js?v=20261017-9';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#feedback-list'), dialog = $('#detail-dialog');
 let feedback = [], category = 'all', status = 'all', pageSize = 24, selectedId = '', formUrl = '';
+let loadController = null;
 const returnedFromForm = new URLSearchParams(location.search).get('submitted') === '1';
 
 function configureForm(url) {
@@ -14,7 +15,7 @@ function configureForm(url) {
 function submitAction(label = '提交反馈') {
   return formUrl ? { label, run: () => location.assign(formUrl) } : null;
 }
-function render() {
+function render(animate = false) {
   const visible = visibleFeedback(feedback, { category, status, query: $('#search').value });
   const filtered = category !== 'all' || status !== 'all' || $('#search').value.trim();
   $('#reset-filters').hidden = !filtered;
@@ -22,11 +23,12 @@ function render() {
     const selected = button.dataset.category === category;
     button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected));
   }
+  list.classList.toggle('is-changing', animate);
   list.replaceChildren();
   if (!feedback.length) list.append(returnedFromForm ?
     empty('反馈还在同步中', '内容通常一小时内显示，无需重复提交。你可以稍后刷新查看。', { label: '刷新列表', run: load }) :
     empty('期待你的第一条反馈', '遇到问题，或有个新想法，都可以告诉我们。', submitAction('提交第一条反馈')));
-  else if (!visible.length) list.append(empty('没有找到相关反馈', '换个分类或关键词试试，也欢迎提出新的反馈。', { label: '清除筛选', run: reset }));
+  else if (!visible.length) list.append(empty('没有找到相关反馈', '换个分类或关键词试试，也欢迎提出新的反馈。'));
   else visible.slice(0, pageSize).forEach(record => list.append(card(record, openDetail)));
   $('#list-footer').hidden = visible.length <= pageSize;
   $('#total-count').textContent = `${visible.length} 条`;
@@ -69,22 +71,27 @@ function openDetail(id, changeUrl = true) {
   $('#close-dialog').focus(); dialog.scrollTop = 0;
 }
 async function load() {
+  loadController?.abort();
+  const controller = new AbortController(); loadController = controller;
   list.setAttribute('aria-busy', 'true');
   try {
-    const response = await fetch('./data/feedback.json', { cache: 'no-cache' });
+    const response = await fetch('./data/feedback.json', { cache: 'no-cache', signal: controller.signal });
     if (!response.ok) throw new Error('暂时无法连接');
     const data = validatePublic(await response.json());
-    feedback = data.feedback; configureForm(data.formUrl); render();
+    if (controller.signal.aborted) return;
+    feedback = data.feedback; configureForm(data.formUrl); render(true);
     if (/^#F-\d+$/.test(location.hash)) openDetail(location.hash.slice(1), false);
   } catch {
+    if (controller.signal.aborted) return;
     list.setAttribute('aria-busy', 'false');
     list.replaceChildren(empty('反馈暂时没有加载出来', '请稍后重试，或通过页脚联系开发者。', { label: '重新加载', run: load }));
   }
 }
 for (const button of document.querySelectorAll('[data-category]')) button.addEventListener('click', () => {
-  category = button.dataset.category; pageSize = 24; updateProgressOptions(); render();
+  if (category === button.dataset.category) return;
+  category = button.dataset.category; pageSize = 24; updateProgressOptions(); render(true);
 });
-$('#status-filter').addEventListener('change', event => { status = event.target.value; pageSize = 24; render(); });
+$('#status-filter').addEventListener('change', event => { status = event.target.value; pageSize = 24; render(true); });
 $('#search').addEventListener('input', () => { pageSize = 24; render(); });
 $('#reset-filters').addEventListener('click', reset);
 $('#load-more').addEventListener('click', () => { pageSize += 24; render(); });

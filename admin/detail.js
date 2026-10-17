@@ -1,8 +1,8 @@
-import { STATUSES } from "./domain.js?v=20261017-6";
-import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-6";
-import { el, button, badge, date } from "./views.js?v=20261017-6";
-import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-6";
-import { duplicateControls } from "./duplicate.js?v=20261017-6";
+import { STATUSES } from "./domain.js?v=20261017-9";
+import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-9";
+import { el, button, badge, date } from "./views.js?v=20261017-9";
+import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-9";
+import { duplicateControls } from "./duplicate.js?v=20261017-9";
 
 function choiceButtons(values, selected, action, label) {
   const row = el("div", "action-row choice-row"); row.setAttribute("role", "group"); row.setAttribute("aria-label", label);

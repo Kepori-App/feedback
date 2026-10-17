@@ -5,7 +5,7 @@ const STATUS_LABELS = {
   bug: ['待排查', '已确认', '修复中', '已修复', '暂不处理'],
   suggestion: STATUSES,
   other: ['待处理', '已确认', '处理中', '已完成', '暂不处理'],
-  all: ['待处理', '已确认 / 采纳', '进行中', '已完成', '暂不处理'],
+  all: ['待处理', '已确认/采纳', '进行中', '已完成', '暂不处理'],
 };
 export const categoryOf = value => Object.hasOwn(CATEGORIES, value) ? value : 'other';
 export const categoryLabel = value => CATEGORIES[categoryOf(value)];
