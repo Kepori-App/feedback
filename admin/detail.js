@@ -1,8 +1,8 @@
-import { STATUSES } from "./domain.js?v=20261017-9";
-import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-9";
-import { el, button, badge, date } from "./views.js?v=20261017-9";
-import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-9";
-import { duplicateControls } from "./duplicate.js?v=20261017-9";
+import { STATUSES } from "./domain.js?v=20261017-11";
+import { CATEGORIES, categoryLabel, statusLabel } from "../feedback-model.js?v=20261017-11";
+import { el, button, badge, date } from "./views.js?v=20261017-11";
+import { attachmentGallery, pendingAttachments } from "../attachments.js?v=20261017-11";
+import { duplicateControls } from "./duplicate.js?v=20261017-11";
 
 function choiceButtons(values, selected, action, label) {
   const row = el("div", "action-row choice-row"); row.setAttribute("role", "group"); row.setAttribute("aria-label", label);
@@ -100,7 +100,7 @@ export function memberDetail(group, pending, actions) {
   count.append(el("strong", "", String(group.valid)), el("span", "", "/ 3 条有效反馈"));
   root.append(count, el("p", "subtle", `共 ${group.records.length} 条反馈，其中 ${group.duplicates} 条重复。不按月清零。`));
   const reward = el("div", "member-reward");
-  reward.append(el("h3", "", group.issued ? "已记录发码" : group.valid >= 3 ? "已达标，可以联系发码" : "继续累计中"), el("p", "subtle", "三条有效且不重复反馈，获得 48 元购买终身会员的优惠资格。"));
+  reward.append(el("h3", "", group.issued ? "已记录发码" : group.valid >= 3 ? "已达标，可以联系发码" : "继续累计中"), el("p", "subtle", "累计三条有效且不重复反馈，可获 48 元解锁终身会员的资格。"));
   const email = el("a", "button secondary small", "打开邮箱联系用户 ↗");
   email.href = `mailto:${encodeURIComponent(group.email)}`; reward.append(email);
   const issue = group.member;

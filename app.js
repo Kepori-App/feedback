@@ -1,6 +1,6 @@
-import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-9';
-import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-9';
-import { STATUSES, categoryLabel, statusLabel, visibleFeedback, validatePublic } from './feedback-model.js?v=20261017-9';
+import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-11';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-11';
+import { STATUSES, categoryLabel, statusLabel, visibleFeedback, validatePublic } from './feedback-model.js?v=20261017-11';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#feedback-list'), dialog = $('#detail-dialog');

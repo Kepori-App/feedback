@@ -1,5 +1,5 @@
-import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-9';
-import { categoryLabel, statusLabel } from './feedback-model.js?v=20261017-9';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-11';
+import { categoryLabel, statusLabel } from './feedback-model.js?v=20261017-11';
 
 export const element = (tag, className, text) => {
   const node = document.createElement(tag);
