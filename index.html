@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f4">
+  <meta name="description" content="一起让 Kepori 更好。公开分享意见，查看采纳与开发进度。三条有效反馈，可获得 48 元终身会员优惠资格。">
+  <title>意见与建议 · Kepori</title>
+  <link rel="icon" href="./assets/app-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#feedback">跳到反馈列表</a>
+  <header class="header wrap">
+    <a class="brand" href="https://kepori.app" aria-label="Kepori 官网"><img src="./assets/app-icon.png" width="36" height="36" alt=""><span>Kepori<span class="brand-dot">.</span></span></a>
+    <nav aria-label="主导航"><a href="#rules" class="quiet-link">参与规则</a><a class="button small" data-submit href="#submit">提个建议 <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="live-dot" aria-hidden="true"></span> 一起打磨 Kepori</div>
+      <h1 id="hero-title">你的好想法，<br>值得被认真对待<span class="accent">。</span></h1>
+      <p class="hero-copy">一个使用中的小困扰，一个期待已久的新功能。<br class="desktop-break">写下来，我们一起让 Kepori 更好。</p>
+      <div class="hero-actions"><a class="button" data-submit href="#submit">分享我的想法 <span aria-hidden="true">↗</span></a><span class="subtle">无需注册 · 反馈公开可见</span></div>
+    </section>
+    <div class="workspace">
+      <section id="feedback" class="board" aria-labelledby="board-title">
+        <div class="section-heading"><div><span class="eyebrow muted">IDEAS & PROGRESS</span><h2 id="board-title">每个想法，都有回音</h2></div><span class="total" id="total-count">— 条反馈</span></div>
+        <div class="stats" aria-label="反馈统计"><div><strong id="stat-all">—</strong><span>全部反馈</span></div><div><strong id="stat-adopted">—</strong><span>已采纳 / 进行中</span></div><div><strong id="stat-done">—</strong><span>已完成</span></div></div>
+        <div class="tools">
+          <label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索反馈</span><input id="search" type="search" placeholder="先搜搜，有没有相似的想法" autocomplete="off"></label>
+          <label class="sr-only" for="sort">排序方式</label><select id="sort"><option value="newest">最新反馈</option><option value="oldest">最早反馈</option><option value="updated">优先看进展</option></select>
+        </div>
+        <div class="filters" role="group" aria-label="按处理状态筛选"><button class="filter active" data-status="全部" aria-pressed="true">全部</button><button class="filter" data-status="待评估" aria-pressed="false">待评估</button><button class="filter" data-status="已采纳" aria-pressed="false">已采纳</button><button class="filter" data-status="开发中" aria-pressed="false">开发中</button><button class="filter" data-status="已完成" aria-pressed="false">已完成</button><button class="filter" data-status="暂不采纳" aria-pressed="false">暂不采纳</button></div>
+        <p id="result-info" class="sr-only" role="status" aria-live="polite"></p>
+        <div id="feedback-list" class="feedback-list" aria-busy="true"><div class="empty"><span class="empty-mark" aria-hidden="true">···</span><h3>正在读取大家的想法</h3><p>稍等片刻。</p></div></div>
+        <div id="list-footer" class="list-footer" hidden><button id="load-more" class="button secondary">再看一些</button></div>
+        <p class="sync-note">提交后通常一小时内同步，偶有延迟。处理结果会持续更新。</p>
+      </section>
+      <aside>
+        <section class="reward-card" aria-labelledby="reward-title"><div class="eyebrow">给认真提建议的你</div><h2 id="reward-title">三个有效想法，<br>一份长久的感谢。</h2><div class="price"><span class="currency">¥</span><strong>48</strong><span class="price-note">终身会员<br>专属优惠价</span></div><p>同一个邮箱累计三条有效且不重复的反馈，即可获得优惠购买资格。</p><ol class="reward-steps"><li><span>1</span>写下建议，留下联系邮箱</li><li><span>2</span>我们确认有效，自动累计</li><li><span>3</span>达标后，手动联系你发码</li></ol><a href="#rules" class="text-link">了解参与规则 <span aria-hidden="true">→</span></a><div class="reward-flower" aria-hidden="true">✳</div></section>
+        <div class="side-note"><span class="note-icon" aria-hidden="true">↳</span><p>已经有人提过，也没关系。<br>先读读原建议，避免重复提交。<br>不同场景的新信息，同样有价值。</p></div>
+      </aside>
+    </div>
+    <section id="rules" class="rules" aria-labelledby="rules-title"><div><span class="eyebrow muted">SIMPLE & TRANSPARENT</span><h2 id="rules-title">规则简单，进度透明。</h2><p>反馈被认真阅读，<br>每一条有效贡献都会记得。</p></div><div class="rule-items">
+      <details open><summary>什么样的反馈会计入三条？</summary><p>清楚描述问题或使用场景、对产品有帮助，且不与已有建议重复的反馈，经开发者标记“有效”后计入。是否计数与是否采纳分别判断；待确认、重复和无效反馈不计数。</p></details>
+      <details><summary>表达不同，但意思一样怎么办？</summary><p>我们会查找相似建议并人工确认。确定重复后，这条反馈仍公开，显示“重复 · 不计数”并链接到原建议。有实质新场景或新信息时，可作为独立贡献确认。提交前的搜索只帮助你查看已有内容，不是最终判重。</p></details>
+      <details><summary>隔几个月提交，还能累计吗？</summary><p>可以。活动按相同联系邮箱持续累计，不按月清零。请一直使用同一邮箱；换邮箱或有统计疑问，请联系开发者核对。邮箱用于联系和归类，不会公开。</p></details>
+      <details><summary>48 元优惠怎么领取？</summary><p>累计三条有效且不重复的反馈后，开发者会通过你填写的邮箱手动联系并发放优惠兑换方式。你获得的是 48 元购买终身会员的资格。每个邮箱限领取一次；页面不收款，也不会自动发码。</p></details>
+      <details><summary>哪些内容会公开？</summary><p>昵称、反馈内容、处理状态、计数结果和公开回复。请勿在昵称或正文填写邮箱、手机号、密码或其他隐私信息。联系邮箱仅供开发者管理活动；如需更正公开内容，请联系开发者。</p></details>
+    </div></section>
+    <section id="submit" class="submit-section"><div><span class="eyebrow muted">YOUR NEXT GOOD IDEA</span><h2>下一次改进，<br>也许就从你开始。</h2></div><div><p id="form-message">准备好后，在表单中写下你的建议。</p><a id="form-link" class="button" href="https://tally.so" target="_blank" rel="noopener noreferrer" hidden>打开反馈表单 <span aria-hidden="true">↗</span></a><p class="subtle">使用 Tally 提交，无需创建账号。</p></div></section>
+  </main>
+  <footer class="footer wrap"><span>Kepori<span class="brand-dot">.</span> <span class="footer-caption">慢慢打磨，一起变好。</span></span><div><a id="contact-link" href="mailto:jinwandalaohu940@gmail.com">联系开发者</a><a href="https://kepori.app/privacy">隐私政策</a><a href="https://kepori.app">返回官网 ↗</a></div></footer>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><span class="eyebrow muted" id="detail-id"></span><button id="close-dialog" class="icon-button" aria-label="关闭反馈详情">×</button></div><div id="detail-content"></div><div class="dialog-footer"><button id="copy-link" class="button secondary small">复制这条反馈链接</button><span id="copy-status" class="subtle" role="status"></span></div></dialog>
+  <noscript><p class="wrap">请启用 JavaScript 查看反馈列表。你也可以通过页脚邮箱联系开发者。</p></noscript>
+</body>
+</html>
