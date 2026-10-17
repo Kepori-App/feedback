@@ -4,6 +4,94 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-13",
+      "category": "bug",
+      "title": "抖音解析问题 实况或者视频需要反复解析才可以成功",
+      "description": "",
+      "nickname": "宝宝",
+      "createdAt": "2026-10-17T14:20:05.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
+      "id": "F-12",
+      "category": "suggestion",
+      "title": "可以增加一个作者分类的标签 头像加列表显示，方便选取同一作者所有作品进行翻阅！",
+      "description": "",
+      "nickname": "宝宝",
+      "createdAt": "2026-10-17T14:19:19.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
+      "id": "F-11",
+      "category": "bug",
+      "title": "小组件的问题：切换横屏模式，太紧凑；13Pro 18系统",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-17T14:10:28.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/0e3e65737f09018a7bca3abfe8003fd877d9c93fd74e751adf9bbc9f8c47df98.png",
+          "mimeType": "image/png",
+          "size": 94764
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
+      "id": "F-10",
+      "category": "suggestion",
+      "title": "增加媒体（图片）编辑功能。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-17T14:04:37.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/b60111ac23524a4e66ba4896a3ef45a292852d717d855a87ebd43d34451b8107.png",
+          "mimeType": "image/png",
+          "size": 1247461
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
+      "id": "F-9",
+      "category": "suggestion",
+      "title": "底部功能键，可以加上对应的功能名称；初次使用的话，容易盲猜，不停的点击图标切换功能去试错。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-17T13:58:40.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/52e9e26f45009186528749d126d0613e32b888b89d49ec87f9328469948590e5.png",
+          "mimeType": "image/png",
+          "size": 608808
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-7",
       "category": "suggestion",
       "title": "希望增加自定义调色板",
