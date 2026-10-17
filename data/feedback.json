@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-16",
+      "category": "other",
+      "title": "[同步联调测试] Make 即时同步验证 20261017-01",
+      "description": "仅用于验证提交 → Make → GitHub → 公开页的实际同步时间。测试后移入回收站，不参与活动计数。",
+      "nickname": "Kepori 同步测试",
+      "createdAt": "2026-10-17T14:49:35.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-13",
       "category": "bug",
       "title": "抖音解析问题 实况或者视频需要反复解析才可以成功",
