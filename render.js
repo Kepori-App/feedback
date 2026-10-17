@@ -1,3 +1,5 @@
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-4';
+
 export const element = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -21,8 +23,7 @@ export function dateLabel(value) {
 
 export function meta(record) {
   const row = element('div', 'card-meta');
-  row.append(element('span', 'avatar', Array.from(record.nickname)[0] || 'K'),
-    element('span', '', record.nickname));
+  row.append(element('span', '', record.nickname));
   const date = element('time', 'meta-date', dateLabel(record.createdAt));
   date.dateTime = record.createdAt;
   row.append(date);
@@ -45,9 +46,9 @@ export function card(record, open) {
   title.type = 'button';
   title.addEventListener('click', () => open(record.id));
   const heading = element('h3');
-  heading.style.margin = '0';
   heading.append(title);
-  article.append(top, heading, element('p', 'feedback-description', record.description), meta(record));
+  article.append(heading, top, element('p', 'feedback-description', record.description), meta(record));
+  article.append(attachmentGallery(record.attachments, { compact: true, open: () => open(record.id) }), pendingAttachments(record.attachmentsPending));
   if (record.duplicateOf) article.append(duplicateLink(record, open));
   if (record.reply) article.append(element('div', 'reply-preview', `开发者回复 · ${record.reply}`));
   return article;
@@ -55,7 +56,7 @@ export function card(record, open) {
 
 export function empty(title, text, action) {
   const node = element('div', 'empty');
-  node.append(element('span', 'empty-mark', '↗'), element('h3', '', title), element('p', '', text));
+  node.append(element('h3', '', title), element('p', '', text));
   if (action) {
     const button = element('button', 'button secondary small', action.label);
     button.type = 'button';

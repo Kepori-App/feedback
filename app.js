@@ -1,4 +1,5 @@
-import { element, card, badge, meta, duplicateLink, empty } from './render.js';
+import { element, card, badge, meta, duplicateLink, empty } from './render.js?v=20261017-4';
+import { attachmentGallery, pendingAttachments } from './attachments.js?v=20261017-4';
 
 const $ = selector => document.querySelector(selector);
 const list = $('#feedback-list');
@@ -23,7 +24,7 @@ function validate(data) {
 function configureForm(url) {
   formUrl = /^https:\/\/tally\.so\/r\/[a-zA-Z0-9]+$/.test(url) ? url : '';
   $('#form-link').hidden = !formUrl;
-  $('#form-message').textContent = formUrl ? '写一条清楚的建议，剩下的交给我们。' : '反馈表单正在准备中，请稍后再来。';
+  $('#form-message').textContent = formUrl ? '提交前先搜索，避免重复。' : '反馈表单正在准备中，请稍后再来。';
   for (const link of document.querySelectorAll('[data-submit], #form-link')) {
     link.href = formUrl || '#submit';
     if (formUrl) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
@@ -41,18 +42,20 @@ function render() {
     priority[b.status] - priority[a.status] || b.createdAt.localeCompare(a.createdAt) :
     (sort === 'oldest' ? 1 : -1) * a.createdAt.localeCompare(b.createdAt));
   list.replaceChildren();
-  if (!feedback.length) list.append(empty('第一个好想法，等你来写', '这里会公开展示大家的反馈，以及每条建议的处理进展。'));
+  if (!feedback.length) list.append(empty('还没有反馈', '欢迎提交第一条建议。'));
   else if (!visible.length) list.append(empty('暂时没有找到', '试试其他关键词，或看看全部反馈。', {
     label: '查看全部', run() { $('#search').value = ''; setStatus('全部'); },
   }));
   else for (const record of visible.slice(0, pageSize)) list.append(card(record, openDetail));
   $('#list-footer').hidden = visible.length <= pageSize;
+  $('#total-count').textContent = `${visible.length} 条`;
   $('#result-info').textContent = `找到 ${visible.length} 条反馈，已展示 ${Math.min(pageSize, visible.length)} 条。`;
   list.setAttribute('aria-busy', 'false');
 }
 
 function setStatus(status) {
   currentStatus = status;
+  $('#status-filter').value = status;
   pageSize = 24;
   for (const button of document.querySelectorAll('[data-status]')) {
     const active = button.dataset.status === status;
@@ -77,6 +80,7 @@ function openDetail(id, changeUrl = true) {
   const title = element('h2', '', record.title);
   title.id = 'detail-title';
   content.replaceChildren(labels, title, meta(record), element('p', 'detail-description', record.description));
+  content.append(attachmentGallery(record.attachments), pendingAttachments(record.attachmentsPending));
   if (record.duplicateOf) content.append(duplicateLink(record, openDetail));
   if (record.reply) {
     const reply = element('div', 'detail-reply');
@@ -98,10 +102,6 @@ async function load() {
     const data = validate(await response.json());
     feedback = data.feedback;
     configureForm(data.formUrl);
-    $('#stat-all').textContent = feedback.length;
-    $('#total-count').textContent = `${feedback.length} 条反馈`;
-    $('#stat-adopted').textContent = feedback.filter(item => ['已采纳', '开发中'].includes(item.status)).length;
-    $('#stat-done').textContent = feedback.filter(item => item.status === '已完成').length;
     render();
     if (/^#F-\d+$/.test(location.hash)) openDetail(location.hash.slice(1), false);
   } catch {
@@ -111,10 +111,12 @@ async function load() {
 }
 
 for (const button of document.querySelectorAll('[data-status]')) button.addEventListener('click', () => setStatus(button.dataset.status));
+$('#status-filter').addEventListener('change', event => setStatus(event.target.value));
 $('#search').addEventListener('input', () => { pageSize = 24; render(); });
 $('#sort').addEventListener('change', render);
 $('#load-more').addEventListener('click', () => { pageSize += 24; render(); });
 $('#close-dialog').addEventListener('click', () => dialog.close());
+dialog.addEventListener('close', () => dialog.querySelectorAll('video').forEach(video => video.pause()));
 dialog.addEventListener('close', () => { if (/^#F-\d+$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); });
 dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
 $('#copy-link').addEventListener('click', async () => {

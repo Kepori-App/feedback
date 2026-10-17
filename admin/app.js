@@ -1,2 +1,2 @@
-import { startLogin } from "./login.js?v=20261017-2";
+import { startLogin } from "./login.js?v=20261017-4";
 startLogin();

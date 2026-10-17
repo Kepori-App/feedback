@@ -1,6 +1,6 @@
 import { decodeRecord, groupMembers, operation, commandResult } from "./domain.js";
-import { el, button, notice, empty, metric, feedbackRow, memberRow } from "./views.js";
-import { feedbackDetail, memberDetail } from "./detail.js";
+import { el, notice, empty, metric, feedbackRow, memberRow } from "./views.js?v=20261017-4";
+import { feedbackDetail, memberDetail, captureDraft, restoreDraft } from "./detail.js?v=20261017-4";
 
 const FILTERS = { feedback: ["待确认", "全部反馈", "有效", "重复", "无效"], members: ["待发码", "全部用户", "已发码", "累计中"] };
 export function createDashboard(api) {
@@ -19,22 +19,22 @@ export function createDashboard(api) {
   }
   function choose(id) {
     selected = id; lastDetail = ""; render();
-    if (matchMedia("(max-width: 800px)").matches) byId("inspector").scrollIntoView({ behavior: "instant", block: "start" });
+    if (matchMedia("(max-width: 700px)").matches) byId("inspector").scrollIntoView({ behavior: "instant", block: "start" });
   }
   function render() {
     const items = feedback();
     byId("metrics").replaceChildren(
       metric(items.filter(item => item.validity === "待确认").length, "待确认反馈", () => selectView("feedback", "待确认")),
-      metric(groups.filter(group => group.valid >= 3 && !group.issued).length, "达标待发码", () => selectView("members", "待发码")),
-      metric(items.length, "全部反馈", () => selectView("feedback", "全部反馈")),
-      metric(groups.filter(group => group.issued).length, "已发码用户", () => selectView("members", "已发码")));
+      metric(groups.filter(group => group.valid >= 3 && !group.issued).length, "待发码", () => selectView("members", "待发码")));
     document.querySelectorAll("[data-view]").forEach(node => {
       const active = node.dataset.view === view; node.classList.toggle("active", active); node.setAttribute("aria-pressed", String(active));
     });
-    byId("admin-filters").replaceChildren(...FILTERS[view].map(value => {
-      const node = button(value, () => { filter = value; selected = null; limit = 30; render(); }, `filter${filter === value ? " active" : ""}`);
-      node.setAttribute("aria-pressed", String(filter === value)); return node;
-    }));
+    const filterControl = byId("admin-filter");
+    if (filterControl.dataset.view !== view) {
+      filterControl.replaceChildren(...FILTERS[view].map(value => { const option = el("option", "", value); option.value = value; return option; }));
+      filterControl.dataset.view = view;
+    }
+    filterControl.value = filter;
     const query = byId("admin-search").value.trim().toLowerCase();
     let visible = view === "feedback" ? items.filter(item => (filter === "全部反馈" || item.validity === filter) &&
       `${item.public_id} ${item.title} ${item.description} ${item.email}`.toLowerCase().includes(query))
@@ -53,13 +53,22 @@ export function createDashboard(api) {
     byId("more").hidden = visible.length <= limit;
     const current = all.find(item => key(item) === selected);
     const owner = current && view === "feedback" ? groups.find(group => group.email === current.email) : null;
-    const signature = JSON.stringify([view, current, owner?.valid, current && pending.get(view === "feedback" ? current.issue_number : current.member?.issue_number)]);
+    const detailData = current && (view === "feedback" ? [current.public_id, current.title, current.description,
+      current.email, current.created_at, current.status, current.validity, current.duplicate_of, current.reply, current.suspected,
+      current.published_files, current.source_files?.map(item => item.id)] :
+      [current.email, current.valid, current.duplicates, current.issued, current.member?.issue_number,
+        current.records.map(item => [item.public_id, item.title, item.created_at, item.validity])]);
+    const signature = JSON.stringify([view, detailData, current && pending.get(view === "feedback" ? current.issue_number : current.member?.issue_number)]);
     if (signature !== lastDetail) {
       lastDetail = signature;
+      const draft = captureDraft(byId("inspector"));
       byId("inspector").replaceChildren(current ? view === "feedback" ?
         feedbackDetail(current, groups.find(group => group.email === current.email), items, pending.has(current.issue_number), actions) :
         memberDetail(current, pending.has(current.member?.issue_number), actions) : empty("选一条，认真回应", "反馈详情、处理按钮和用户累计会显示在这里。"));
+      restoreDraft(byId("inspector"), draft);
     }
+    const contactTotal = byId("inspector").querySelector(".contact-total");
+    if (contactTotal && owner) contactTotal.textContent = `此邮箱有效 ${owner.valid} / 3 条，查看全部 →`;
   }
   async function send(record, type, value) {
     if (stopped || !record || pending.has(record.issue_number) || sending.has(record.issue_number)) return;
@@ -71,9 +80,16 @@ export function createDashboard(api) {
       const response = await api.comment(record.issue_number, change.body);
       if (stopped) return;
       pending.set(record.issue_number, { id: response.id, expected: change.expected, started: Date.now() });
-      message("操作已提交，正在同步。确认后会自动更新；公开页随后更新。");
+      message("已提交，正在同步…");
     } catch (error) { if (!stopped) message(error.message, true); }
-    finally { sending.delete(record.issue_number); if (!stopped) { lastDetail = ""; render(); schedule(); } }
+    finally {
+      sending.delete(record.issue_number);
+      if (!stopped) {
+        const currentIssue = view === "feedback" ? records.find(item => item.public_id === selected)?.issue_number : groups.find(item => item.email === selected)?.member?.issue_number;
+        if (currentIssue === record.issue_number) lastDetail = "";
+        render(); schedule();
+      }
+    }
   }
   function schedule() {
     clearTimeout(timer);
@@ -90,18 +106,19 @@ export function createDashboard(api) {
       summaryNumber = issues.find(issue => issue.labels?.some(label => label.name === "类型:总览"))?.number;
       byId("import").disabled = !summaryNumber || importRequested;
       records = issues.map(decodeRecord).filter(Boolean); groups = groupMembers(records);
-      const rejections = [];
+      const rejections = [], hadPending = pending.size > 0;
       for (const [number, change] of pending) {
         const record = records.find(item => item.issue_number === number);
         const result = record ? commandResult(record, change) : "pending";
         if (result !== "pending") { pending.delete(number); if (result === "rejected") rejections.push(`F-${number}`); }
       }
       render();
-      byId("account-info").textContent = `私有记录已连接 · ${new Intl.DateTimeFormat("zh-CN", { hour: "2-digit", minute: "2-digit", second: "2-digit" }).format(new Date())} 刷新`;
+      byId("account-info").textContent = `上次刷新 ${new Intl.DateTimeFormat("zh-CN", { hour: "2-digit", minute: "2-digit" }).format(new Date())}`;
       if (rejections.length) message(`${rejections.join("、")} 的操作未按预期应用，请检查记录后重试。`, true);
-      else if (pending.size) message([...pending.values()].some(item => Date.now() - item.started > 300000) ? "GitHub 处理时间较长，记录仍在同步。稍后点“刷新列表”；不必重复提交。" : "操作已提交，正在同步；累计以 GitHub 确认结果为准。");
-      else if (manual) message(importRequested ? "列表已刷新。同步请求已发送，新提交通常数分钟后出现。" : "已读取最新私有记录。公开网站可能再延迟一两分钟更新。");
-      else if (!importRequested) message("记录已同步。公开网站随后更新。");
+      else if (pending.size) message([...pending.values()].some(item => Date.now() - item.started > 300000) ? "同步较慢，稍后刷新即可，无需重复提交。" : "正在同步…");
+      else if (hadPending) message("已保存，公开页稍后更新。");
+      else if (importRequested) message("已请求同步，新反馈通常数分钟后出现。");
+      else message(manual ? "已刷新。" : "");
     } catch (error) { if (!stopped) message(error.message, true); }
     finally { refreshing = false; if (!stopped) { byId("refresh").disabled = false; byId("admin-list").setAttribute("aria-busy", "false"); schedule(); } }
   }
@@ -111,7 +128,7 @@ export function createDashboard(api) {
     try {
       await api.comment(summaryNumber, "/同步");
       if (stopped) return;
-      importRequested = true; message("已请求从 Tally 同步新反馈，通常需数分钟。页面会自动刷新。每小时也会自动同步。");
+      importRequested = true; message("已请求同步，新反馈通常数分钟后出现。");
       const reset = setTimeout(() => { if (!stopped) { importRequested = false; byId("import").disabled = false; } }, 180000);
       removers.push(() => clearTimeout(reset)); schedule();
     } catch (error) { if (!stopped) { message(error.message, true); byId("import").disabled = false; } }
@@ -119,6 +136,7 @@ export function createDashboard(api) {
   listen(byId("refresh"), "click", () => refresh());
   listen(byId("import"), "click", requestImport);
   listen(byId("more"), "click", () => { limit += 30; render(); });
+  listen(byId("admin-filter"), "change", event => { filter = event.target.value; selected = null; limit = 30; render(); });
   listen(byId("admin-search"), "input", () => { limit = 30; selected = null; render(); });
   document.querySelectorAll("[data-view]").forEach(node => listen(node, "click", () => selectView(node.dataset.view, FILTERS[node.dataset.view][0])));
   byId("import").disabled = true;

@@ -22,7 +22,7 @@ export function date(value) {
 }
 export function empty(title, description) {
   const node = el("div", "admin-empty");
-  node.append(el("span", "empty-mark", "↳"), el("h3", "", title), el("p", "subtle", description));
+  node.append(el("h3", "", title), el("p", "subtle", description));
   return node;
 }
 export function metric(value, label, action) {
