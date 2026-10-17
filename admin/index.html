@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>反馈管理 · Kepori</title>
+  <link rel="icon" href="../assets/app-icon.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./admin.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到管理内容</a>
+  <header class="header wrap">
+    <a class="brand" href="../"><img src="../assets/app-icon.png" width="36" height="36" alt=""><span>Kepori<span class="brand-dot">.</span></span><span class="admin-label">反馈管理</span></a>
+    <nav aria-label="管理导航"><a class="quiet-link" href="../">查看公开页 ↗</a><button id="lock" class="button small secondary" hidden>退出管理</button></nav>
+  </header>
+  <main id="main" class="wrap admin-main">
+    <section id="login-panel" class="login-layout" aria-labelledby="login-title">
+      <div class="login-intro"><span class="eyebrow">A LITTLE CARE, EVERY DAY</span><h1 id="login-title">认真回应，<br>只需点几下<span class="accent">。</span></h1><p>读建议、标记进展、查看达标用户。<br>反馈和累计记录，都在这里管理。</p><ol class="login-steps"><li>确认有效，自动计入同一邮箱</li><li>重复建议，选择原反馈关联</li><li>满三条后手动发码，在这里标记</li></ol><p class="subtle">用户仍然免注册。联系邮箱只向管理员显示。</p></div>
+      <div class="login-card">
+        <form id="connect-form">
+          <span class="eyebrow muted">仅管理员使用</span><h2>连接反馈记录</h2><p class="subtle">首次配置一次 GitHub 管理密钥，之后可用本机密码解锁。</p>
+          <label class="field" for="token">GitHub 管理密钥<input id="token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+          <label class="check-row"><input id="remember" type="checkbox">在此设备加密保存</label>
+          <div id="save-password-fields" hidden><label class="field" for="save-password">设置本机解锁密码<input id="save-password" type="password" minlength="10" autocomplete="new-password" placeholder="至少 10 位，仅用于本机解锁"></label><label class="field" for="confirm-password">再输入一次<input id="confirm-password" type="password" autocomplete="new-password"></label><p class="subtle">密码不会上传。忘记后，可清除本机配置并重新粘贴密钥。</p></div>
+          <button class="button connect-button" type="submit">进入管理页 <span aria-hidden="true">→</span></button>
+          <details class="setup-help"><summary>第一次使用，密钥从哪里来？</summary><p>打开下方 GitHub 配置页，资源所有者选 Kepori-App，仅选择 feedback-admin 仓库。权限只需 Issues 读写、Metadata 只读，生成后粘贴到上面。</p><a id="create-token" class="text-link" href="https://github.com/settings/personal-access-tokens/new?name=Kepori%20Feedback%20Admin&amp;target_name=Kepori-App&amp;expires_in=365&amp;issues=write&amp;description=Browser%20admin%20for%20Kepori%20feedback-admin%20Issues%20only" target="_blank" rel="noopener noreferrer">打开 GitHub 配置页 ↗</a><p>请勿选择全部仓库，也不要使用已有的 Tally 密钥或网站发布密钥。</p></details>
+        </form>
+        <form id="unlock-form" hidden><span class="eyebrow muted">欢迎回来</span><h2>解锁反馈管理</h2><p class="subtle">已在此设备加密保存管理密钥。</p><label class="field" for="unlock-password">本机解锁密码<input id="unlock-password" type="password" required autocomplete="current-password"></label><button class="button connect-button" type="submit">解锁并进入 <span aria-hidden="true">→</span></button><button id="forget-device" class="text-button" type="button">忘记此设备，重新配置</button></form>
+        <p id="login-message" class="notice" role="status" aria-live="polite" hidden></p>
+        <p class="login-footnote">管理密钥只用于直连 GitHub。网站不保存明文密钥，也不接收你的本机密码。</p>
+      </div>
+    </section>
+    <section id="workspace" hidden aria-labelledby="workspace-title">
+      <div class="admin-heading"><div><span class="eyebrow muted">FEEDBACK DESK</span><h1 id="workspace-title">把好想法，变成小进步<span class="accent">。</span></h1><p class="subtle" id="account-info"></p></div><div class="heading-actions"><button id="import" class="button secondary small">同步新反馈</button><button id="refresh" class="button small">刷新列表</button></div></div>
+      <div id="metrics" class="admin-metrics" aria-label="管理统计"></div>
+      <p id="workspace-message" class="notice" role="status" aria-live="polite" hidden></p>
+      <div class="admin-tools"><div class="view-tabs" role="group" aria-label="管理内容"><button data-view="feedback" class="view-tab active" aria-pressed="true">处理反馈</button><button data-view="members" class="view-tab" aria-pressed="false">用户与发码</button></div><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索反馈或联系邮箱</span><input id="admin-search" type="search" autocomplete="off" placeholder="搜索建议、编号或邮箱"></label></div>
+      <div id="admin-filters" class="filters" role="group" aria-label="筛选管理记录"></div>
+      <div class="admin-grid"><section aria-labelledby="list-title"><div class="list-heading"><h2 id="list-title">待确认的反馈</h2><span id="list-count" class="subtle"></span></div><div id="admin-list" aria-busy="false"></div><button id="more" class="button secondary small" hidden>再看一些</button></section><section id="inspector" class="inspector" aria-label="选中记录详情"></section></div>
+      <p class="admin-tip">标记有效与是否采纳分别判断。累计不按月清零；48 元为终身会员优惠购买价。实际兑换码由你自行发送。</p>
+    </section>
+  </main>
+  <footer class="footer wrap"><span>Kepori<span class="brand-dot">.</span> <span class="footer-caption">慢慢打磨，一起变好。</span></span><div><a href="../">返回公开反馈</a><a href="https://tally.so/r/6DJpgN" target="_blank" rel="noopener noreferrer">打开收集表单 ↗</a></div></footer>
+  <noscript><p class="wrap">请启用 JavaScript 使用管理页。</p></noscript>
+</body>
+</html>
