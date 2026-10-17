@@ -32,7 +32,7 @@ export async function showVisits(node, { url = location.href, transport = fetch 
   let leaving = false;
   const stop = () => { leaving = true; controller.abort(); };
   window.addEventListener('pagehide', stop, { once: true });
-  const timeout = setTimeout(() => controller.abort(), 6000);
+  const timeout = setTimeout(() => controller.abort(), 20000);
   try {
     const count = await requestVisits({ transport, signal: controller.signal });
     if (leaving) return;
