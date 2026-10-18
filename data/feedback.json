@@ -43,7 +43,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢反馈，已记录并待排查。iCloud 同步与“文件”App 中可见的文件夹是两回事，本机也可能保留缓存；仅凭看不到文件夹还无法判断同步是否异常。请补充 App 版本和设置中的同步状态截图，便于核对。",
       "attachments": [],
       "attachmentsPending": 0
     },
