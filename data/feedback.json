@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-30",
+      "category": "suggestion",
+      "title": "希望抖音支持用户自定义解析接口",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-18T05:32:47.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-28",
       "category": "bug",
       "title": "1.小红书视频保存还有水印 2.抖音及抖音极速版只能识别保存部分文件 3.抖音视频保存也存在水印问题 4.保存比较杂乱不能自动识别平台",
