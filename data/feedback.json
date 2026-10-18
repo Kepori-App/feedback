@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-51",
+      "category": "suggestion",
+      "title": "希望增加后台静默收藏的快捷指令，无需跳转到app就可收藏",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-18T14:29:06.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-50",
       "category": "suggestion",
       "title": "为剪切板增加开关，自动读取",
