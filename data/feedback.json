@@ -13,7 +13,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢详细反馈，已分别记录解析不完整、媒体质量和来源标识问题，会优先排查“部分保存”。请补充失败的原链接和 App 版本，便于复现。媒体会优先选择来源提供的清晰、无水印版本，无法取得时保留可用版本；来源标识会单独评估。",
       "attachments": [
         {
           "path": "assets/uploads/9b5ccb8f3f75199e4cc57cbafdcb1241c275816a0d20381295e0501d4144f996.png",
