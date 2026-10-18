@@ -4,6 +4,36 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-28",
+      "category": "bug",
+      "title": "1.小红书视频保存还有水印 2.抖音及抖音极速版只能识别保存部分文件 3.抖音视频保存也存在水印问题 4.保存比较杂乱不能自动识别平台",
+      "description": "希望能无水印保存 希望能改进抖音及抖音极速版的使用 希望抖音等等都能无水印保存 超清或高清 希望加入自动识别保存平台功能 小标显示",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-18T02:16:54.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/9b5ccb8f3f75199e4cc57cbafdcb1241c275816a0d20381295e0501d4144f996.png",
+          "mimeType": "image/png",
+          "size": 6847771
+        },
+        {
+          "path": "assets/uploads/439d8527b3e82b8e83ca16f89d9d4a23c67437e962135e4b3791c8a9d488473d.png",
+          "mimeType": "image/png",
+          "size": 8577243
+        },
+        {
+          "path": "assets/uploads/88107520e26580e57437693eb7cf01748775e322cd20482c03f47d6fb8ab2737.png",
+          "mimeType": "image/png",
+          "size": 6536014
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-26",
       "category": "bug",
       "title": "iCloud上的储存位置",
