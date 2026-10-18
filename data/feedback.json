@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-48",
+      "category": "bug",
+      "title": "x的视频不能解析",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-18T12:09:30.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-46",
       "category": "bug",
       "title": "快捷指令一键收藏内容有Bug提示出错",
