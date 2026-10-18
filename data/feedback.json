@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-42",
+      "category": "suggestion",
+      "title": "阅读外观主体可以加个用户自定颜色颜色。",
+      "description": "阅读外观主体可以加个用户自定颜色颜色，如这种多选择颜色。",
+      "nickname": "Mr.成",
+      "createdAt": "2026-10-18T10:16:54.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/d5983486122306cb7e0b36752701a93acf556dd79a9fb5f6d31411f9819308c7.png",
+          "mimeType": "image/png",
+          "size": 4496231
+        },
+        {
+          "path": "assets/uploads/56dbb128c252e1341e2cbe6b7393627dacb8a568969e602f27ae1ec31e0fe7c0.jpg",
+          "mimeType": "image/jpeg",
+          "size": 292891
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-40",
       "category": "suggestion",
       "title": "能不能考虑，这个列表再增加几种选择样式，对我自身来说，还是有点占用空间，我需求是比较紧凑的标题。或者能自己调整标题的大小也行。",
