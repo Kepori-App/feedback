@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-34",
+      "category": "suggestion",
+      "title": "希望提升一下收藏内容阅读体验，在阅读设置里增加一个纯净阅读模式（无图模式），就是去除所有图片，过滤其他文字，只显示正文文字，干净清爽。",
+      "description": "有些收藏内容的图片文章开头和结尾都是图片广告，真的很影响阅读体验，纯净阅读模式无图模式就相当于去广告了。",
+      "nickname": "VV",
+      "createdAt": "2026-10-18T07:30:43.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/bc7970dca9cd267531a88c4820362735297fa76ab1374852b780b240f01a7a5d.png",
+          "mimeType": "image/png",
+          "size": 3353411
+        },
+        {
+          "path": "assets/uploads/18cc70a2b069715e6743596b12087689ef6316ec250a5a37a59a04bb2b69eeff.png",
+          "mimeType": "image/png",
+          "size": 2306067
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-33",
       "category": "suggestion",
       "title": "希望能更好适配普通网页，加入独立的自定义设置(该网页直接走原网站)",
