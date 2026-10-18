@@ -94,9 +94,9 @@
       "nickname": "loophero",
       "createdAt": "2026-10-17T15:27:48.000Z",
       "status": "暂不采纳",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议，已记录。当前首页优先让主要操作保持可见，暂不采用滚动自动隐藏；按钮分组样式会结合整体布局继续评估。",
       "attachments": [
         {
           "path": "assets/uploads/fe5ed4a00de0e45da6141409566827ad197de3f520b2895d5ed83a53926f3a59.png",
@@ -114,9 +114,9 @@
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-17T15:06:15.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议，媒体质量与水印体验会继续评估。会优先检查来源是否提供清晰、无水印版本，无法取得时保留可用版本；暂不采用擦除原有水印或下载时额外加水印的方案，不承诺所有作品都能无水印保存。",
       "attachments": [],
       "attachmentsPending": 0
     },
