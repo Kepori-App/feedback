@@ -128,9 +128,9 @@
       "nickname": "宝宝",
       "createdAt": "2026-10-17T14:20:05.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢反馈，已记录并会优先排查首次解析不稳定的问题。请补充 1–2 条需要反复解析的原链接、App 版本，以及首次出现的提示，便于复现和确认修复效果。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -142,9 +142,9 @@
       "nickname": "宝宝",
       "createdAt": "2026-10-17T14:19:19.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议，已记录。会评估增加带头像的作者浏览入口，让同一作者的收藏更容易集中查找和翻阅；具体形式与排期确定后会更新进展。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -158,7 +158,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢反馈，下个版本",
+      "reply": "已记录 iPhone 13 Pro、iOS 18 下的小组件横屏布局问题，会优先排查。请补充横屏时的截图与 App 版本，便于复现；修复并随正式版本发布后会更新这里的状态。",
       "attachments": [
         {
           "path": "assets/uploads/0e3e65737f09018a7bca3abfe8003fd877d9c93fd74e751adf9bbc9f8c47df98.png",
@@ -178,7 +178,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议，已记录并待评估。会先围绕收藏场景中的轻量图片编辑确定范围；方便的话请补充最常用的操作，例如裁剪、旋转或标注，帮助我们安排优先级。",
       "attachments": [
         {
           "path": "assets/uploads/b60111ac23524a4e66ba4896a3ef45a292852d717d855a87ebd43d34451b8107.png",
