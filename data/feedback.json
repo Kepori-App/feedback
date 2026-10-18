@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-46",
+      "category": "bug",
+      "title": "快捷指令一键收藏内容有Bug提示出错",
+      "description": "希望可以像其它app一样做到静默收藏，只要点击快捷指令不用打开kepori就能后台静默收藏。\n比如看到想收藏的内容分享复制了链接，设置了轻点背面快捷指令自动识别剪贴板链接，全程不用打开kepori,后台自动静默收藏。",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-18T11:45:50.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/1a4897b31203db4fdac6eee5bd1d533fcc0a4a58b1c3103768dc3e2f48bfd4b0.jpg",
+          "mimeType": "image/jpeg",
+          "size": 184754
+        },
+        {
+          "path": "assets/uploads/cc38fc5d1e28a67cfd76992eb3a923ebaf3687fd3fb6b0b1ecec3845eb7487de.jpg",
+          "mimeType": "image/jpeg",
+          "size": 23922
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-45",
       "category": "suggestion",
       "title": "ui内容 重新解析下面加一行编辑工具ui内容，内容如图图2那样的越多越好。",
