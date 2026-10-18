@@ -195,10 +195,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-17T13:58:40.000Z",
-      "status": "暂不采纳",
+      "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "这个如果加文字的话会太乱",
+      "reply": "感谢指出首次使用时图标不易理解的问题。会重新评估功能说明和使用引导，让操作更容易识别，同时保持底栏简洁；具体方案确定后会更新这里的进展。",
       "attachments": [
         {
           "path": "assets/uploads/52e9e26f45009186528749d126d0613e32b888b89d49ec87f9328469948590e5.png",
@@ -218,7 +218,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已采纳，将支持文件夹颜色和强调色自定义，方便按喜好调整。完成测试并随正式版本发布后，会更新这里的进展。",
       "attachments": [],
       "attachmentsPending": 0
     }
