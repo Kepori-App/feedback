@@ -79,10 +79,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-17T16:05:33.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "暂不采纳",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议。当前以无需平台账号的保存方式为主，暂不接入平台登录。需要登录才能查看的内容，可以先保留原链接，再前往原平台打开；后续若调整支持范围，会在这里说明。",
       "attachments": [],
       "attachmentsPending": 0
     },
