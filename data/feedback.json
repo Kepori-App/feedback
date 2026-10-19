@@ -11,9 +11,9 @@
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-19T03:53:50.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已记录商品页显示问题，会与普通视频、图文解析分开排查。请补充抖音商城、淘宝各一条公开商品链接，以及 App 版本和异常截图，便于复现。当前尚未确认原因，暂不标记修复。",
       "attachments": [],
       "attachmentsPending": 0
     },
