@@ -24,10 +24,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T14:29:06.000Z",
-      "status": "待评估",
-      "validity": "待确认",
-      "duplicateOf": null,
-      "reply": "测试版已调整后台收藏的错误反馈和授权到期处理，保持无需打开 App 直接解析，并保护已保存内容和锁定状态。仍待实际快捷指令测试和正式发布；如报错，请补充原链接和提示。",
+      "status": "开发中",
+      "validity": "重复",
+      "duplicateOf": "F-46",
+      "reply": "这条与 F-46 中的“无需打开 App 后台收藏”需求一致，进展统一更新到 F-46，本条按重复反馈不重复计数。后台直接解析已在测试版实现，仍受系统执行时限和来源可用性影响，待测试及正式发布。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -52,10 +52,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T12:09:30.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "开发中",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已调整 X 视频附件识别和保底解析，正在测试。还需要一条失败的公开原链接、App 版本及错误提示，才能核对这次反馈是否已解决；暂不标记完成。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -69,7 +69,7 @@
       "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "测试版已调整后台收藏的错误反馈和授权到期处理，保持无需打开 App 直接解析，并保护已保存内容和锁定状态。仍待实际快捷指令测试和正式发布；如报错，请补充原链接和提示。",
       "attachments": [
         {
           "path": "assets/uploads/1a4897b31203db4fdac6eee5bd1d533fcc0a4a58b1c3103768dc3e2f48bfd4b0.jpg",
@@ -94,7 +94,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已采纳收藏场景中的轻量图片编辑方向，将与 F-10 一起评估裁剪、旋转和基础标注等常用操作。完整图片编辑工具集暂不在计划中，目前尚未进入开发。",
       "attachments": [
         {
           "path": "assets/uploads/d886f53e95400ac63fff433cfffc57d08d1a60395a32eb5923989a0cef35a18a.jpg",
@@ -119,7 +119,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "文字自定义颜色已记录，尚未开发。当前先实现自定义阅读背景，正文颜色自动适配以保证可读；单独选文字颜色会继续结合对比度、链接和高亮评估。",
       "attachments": [
         {
           "path": "assets/uploads/2e9659d50d3917d0596e6400a51c2a945fc34b19c87e53632e1c6053db206b7d.jpg",
@@ -136,10 +136,10 @@
       "description": "阅读外观主体可以加个用户自定颜色颜色，如这种多选择颜色。",
       "nickname": "Mr.成",
       "createdAt": "2026-10-18T10:16:54.000Z",
-      "status": "已采纳",
+      "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "测试版已加入自定义阅读背景，可通过系统取色器选择并保留颜色，正文、链接和高亮同步适配。正在测试，正式发布后再标记完成。",
       "attachments": [
         {
           "path": "assets/uploads/d5983486122306cb7e0b36752701a93acf556dd79a9fb5f6d31411f9819308c7.png",
@@ -161,10 +161,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T09:30:40.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "开发中",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "测试版已新增标题优先、右侧小缩略图的紧凑列表，同时保留瀑布流和时间轴。正在验证切换、长标题和大字体等情况，待正式发布。",
       "attachments": [
         {
           "path": "assets/uploads/b9c3c7a7a7e0ea86071ec6dfb2510a99cf1db4bfa12323bbbde7cde7bcd4e93c.png",
@@ -187,9 +187,9 @@
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T09:26:19.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已记录兼容性需求。当前会核验网盘是否支持安全更新，避免多设备互相覆盖；请补充网盘名称、App 版本和报错截图，勿包含密码或密钥，再判断能否安全兼容。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -200,10 +200,10 @@
       "description": "提升下AI解读总结的UI页面设计排版，AI解读内容总结要全面分析，参考下别的AI的UI页面和解读总结，优化改进一下。",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T07:59:47.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "开发中",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已优化测试版的概览、要点标题和分节排版，并调整长内容的总结策略。官方生成策略尚待部署和同文对比测试，历史结果会保留，暂不标记完成。",
       "attachments": [
         {
           "path": "assets/uploads/71a0253d2991ebb7304206a79b49c8f25353228ca881300d86c23539a801305b.jpg",
@@ -225,10 +225,10 @@
       "description": "有些收藏内容的图片文章开头和结尾都是图片广告，真的很影响阅读体验，纯净阅读模式无图模式就相当于去广告了。",
       "nickname": "VV",
       "createdAt": "2026-10-18T07:30:43.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "开发中",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "测试版已加入纯文字阅读，隐藏图片、视频与链接预览，保留正文、标注和原有媒体，随时可切回。有正文的作品可使用；无法保证识别所有文字广告，正在测试后再发布。",
       "attachments": [
         {
           "path": "assets/uploads/bc7970dca9cd267531a88c4820362735297fa76ab1374852b780b240f01a7a5d.png",
@@ -251,9 +251,9 @@
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T07:13:30.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "当前详情页可切换“原文”和“原网站”。按网站记住默认打开方式尚未实现，已记录评估；也欢迎补充阅读适配不佳的公开网页，便于定位具体问题。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -265,9 +265,9 @@
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T06:14:49.000Z",
       "status": "待评估",
-      "validity": "待确认",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已记录 AI 标签建议。会优先评估“先给建议、由用户确认”的方式，避免自动改动已有分类；具体生成范围与使用方式尚未确定，暂未开发。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -278,10 +278,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T05:32:47.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "暂不采纳",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "感谢建议。当前优先完善内置抖音解析，暂不开放自定义解析接口。遇到失败时可以补充公开原链接和错误提示，帮助我们修复内置流程。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -292,10 +292,10 @@
       "description": "希望能无水印保存 希望能改进抖音及抖音极速版的使用 希望抖音等等都能无水印保存 超清或高清 希望加入自动识别保存平台功能 小标显示",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T02:16:54.000Z",
-      "status": "待评估",
+      "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢详细反馈，已分别记录解析不完整、媒体质量和来源标识问题，会优先排查“部分保存”。请补充失败的原链接和 App 版本，便于复现。媒体会优先选择来源提供的清晰、无水印版本，无法取得时保留可用版本；来源标识会单独评估。",
+      "reply": "已调整抖音页面就绪等待和后续图片合并，正在测试“部分保存”。媒体仍优先使用来源提供的清晰版本，保留作者和水印，不承诺所有作品无水印。平台标识需求另行评估，欢迎补充失败原链接。",
       "attachments": [
         {
           "path": "assets/uploads/9b5ccb8f3f75199e4cc57cbafdcb1241c275816a0d20381295e0501d4144f996.png",
@@ -322,10 +322,10 @@
       "description": "储存位置开启了iCloud，但是还是在本机里，在iCloud中看不到相关文件夹，。",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T02:15:01.000Z",
-      "status": "待评估",
+      "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢反馈，已记录并待排查。iCloud 同步与“文件”App 中可见的文件夹是两回事，本机也可能保留缓存；仅凭看不到文件夹还无法判断同步是否异常。请补充 App 版本和设置中的同步状态截图，便于核对。",
+      "reply": "已核对：当前 iCloud 使用系统同步，不会在“文件”App 中生成可见作品文件夹，本机也可能保留缓存。同步恢复、原件保留和空间展示已做调整，正在测试；若仍异常，请补充版本及同步状态截图。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -339,7 +339,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢提供具体场景和示意，已记录并重点评估。方向是在收藏下追加自己的摘录和感悟，按时间保留、不覆盖原文；具体形式与排期确定后会更新这里的进展。",
+      "reply": "已记录在收藏下追加摘录和感悟、按时间保留且不覆盖原文的需求。当前已有选中文字后的笔记；独立追加感悟的时间线尚未开发，会结合收藏回顾场景评估。",
       "attachments": [
         {
           "path": "assets/uploads/265669c56cebf4505f2e67bc44bcc64a6fd4eeeb64ce9f15a30bcd63f191a60b.jpg",
@@ -364,7 +364,7 @@
       "status": "暂不采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢建议。当前以无需平台账号的保存方式为主，暂不接入平台登录。需要登录才能查看的内容，可以先保留原链接，再前往原平台打开；后续若调整支持范围，会在这里说明。",
+      "reply": "感谢建议。当前以无需平台账号的保存方式为主，暂不接入平台登录。需要登录才能查看的内容可先保留原链接，再前往原平台打开；支持范围调整后会更新这里。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -378,7 +378,7 @@
       "status": "暂不采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢建议，已记录。当前首页优先让主要操作保持可见，暂不采用滚动自动隐藏；按钮分组样式会结合整体布局继续评估。",
+      "reply": "感谢建议。当前保留主要操作可见的简约底栏，暂不采用滚动自动隐藏或重新分组，避免影响已有操作习惯。后续会继续检查点击区域和易用性。",
       "attachments": [
         {
           "path": "assets/uploads/fe5ed4a00de0e45da6141409566827ad197de3f520b2895d5ed83a53926f3a59.png",
@@ -395,10 +395,10 @@
       "description": "",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-17T15:06:15.000Z",
-      "status": "待评估",
+      "status": "暂不采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢建议，媒体质量与水印体验会继续评估。会优先检查来源是否提供清晰、无水印版本，无法取得时保留可用版本；暂不采用擦除原有水印或下载时额外加水印的方案，不承诺所有作品都能无水印保存。",
+      "reply": "会优先选择来源提供的清晰、无水印版本，无法取得时正常保留可用版本。暂不采用擦除原有水印或下载时额外加水印的方案，也不承诺所有作品无水印。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -409,10 +409,10 @@
       "description": "",
       "nickname": "宝宝",
       "createdAt": "2026-10-17T14:20:05.000Z",
-      "status": "待评估",
+      "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢反馈，已记录并会优先排查首次解析不稳定的问题。请补充 1–2 条需要反复解析的原链接、App 版本，以及首次出现的提示，便于复现和确认修复效果。",
+      "reply": "已调整抖音页面就绪等待及后续媒体合并，正在测试首次解析稳定性。尚需用实际失败的公开原链接复核实况和视频；请补充链接、版本和首次提示，正式发布后再更新完成状态。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -426,7 +426,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢建议，已记录。会评估增加带头像的作者浏览入口，让同一作者的收藏更容易集中查找和翻阅；具体形式与排期确定后会更新进展。",
+      "reply": "当前点击作品作者可集中浏览同一作者的收藏。独立的“头像＋作者目录”尚未实现，已记录为后续值得完善的入口，会复用现有作者分类能力。",
       "attachments": [],
       "attachmentsPending": 0
     },
@@ -440,7 +440,7 @@
       "status": "已采纳",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "已记录 iPhone 13 Pro、iOS 18 下的小组件横屏布局问题，会优先排查。请补充横屏时的截图与 App 版本，便于复现；修复并随正式版本发布后会更新这里的状态。",
+      "reply": "横屏布局问题已记录并保留采纳。当前版本暂缓小组件开发，尚未修复；后续恢复排期并完成验证后，会更新这里的进展。",
       "attachments": [
         {
           "path": "assets/uploads/0e3e65737f09018a7bca3abfe8003fd877d9c93fd74e751adf9bbc9f8c47df98.png",
@@ -460,7 +460,7 @@
       "status": "待评估",
       "validity": "有效",
       "duplicateOf": null,
-      "reply": "感谢建议，已记录并待评估。会先围绕收藏场景中的轻量图片编辑确定范围；方便的话请补充最常用的操作，例如裁剪、旋转或标注，帮助我们安排优先级。",
+      "reply": "已记录轻量图片编辑需求，将与 F-45 的界面建议一并评估。优先考虑裁剪、旋转和基础标注等常用操作，目前尚未开发，已有原图会作为保护重点。",
       "attachments": [
         {
           "path": "assets/uploads/b60111ac23524a4e66ba4896a3ef45a292852d717d855a87ebd43d34451b8107.png",
