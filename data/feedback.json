@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-56",
+      "category": "bug",
+      "title": "酷安文章保存时图片不能保存，提示“内容未获取”并且帖子的文字部分的表情包会保存为大表情图片",
+      "description": "",
+      "nickname": "yujun",
+      "createdAt": "2026-10-19T13:35:48.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/14b081ebf243a41a0728f53920be8adad5155c2c44adff32c3f730db58371359.png",
+          "mimeType": "image/png",
+          "size": 949304
+        },
+        {
+          "path": "assets/uploads/47fc2dfadab476779ca62535ee8a5ce706e232573903fab6bf98acb85e0185d7.jpg",
+          "mimeType": "image/jpeg",
+          "size": 147192
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-54",
       "category": "bug",
       "title": "挂🪜以后看X或者油管需要复制收藏时，打开软件第一时间大概率都会白屏",
