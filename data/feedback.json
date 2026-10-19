@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-61",
+      "category": "bug",
+      "title": "1.快手不能保存图文和动图（实况）这类的视频帖子，如图所示 2.抖音不能保存实况图 3.抖音的去水印问题好像是怕侵权，但我 procut 和 picseed 都能，不知道它们是怎样弄的，您看看能不能再想想办法 4.多谢你的努力了❤️",
+      "description": "",
+      "nickname": "yujun",
+      "createdAt": "2026-10-19T14:23:13.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/e813cfb209c864d183e8d754513c0c041df16754d1d373ea70f3a3eda3bbc58a.png",
+          "mimeType": "image/png",
+          "size": 1230272
+        },
+        {
+          "path": "assets/uploads/4cfb9c74fd136be92d57dc9b351b6c7b58ecab39e88bfdaadf84f86291f80574.png",
+          "mimeType": "image/png",
+          "size": 2144030
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-60",
       "category": "suggestion",
       "title": "1. 苹果商店 app 的分享链接保存不了 2.小红书有的链接有水印，有的没有，能不能全部去水印 3.小黑盒有内容与文章两类帖子，内容这类能不能做成类似小红书的是左右移动的，如图，小黑盒还有视频，能不能增加一下保存功能",
