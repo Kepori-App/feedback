@@ -52,7 +52,7 @@
       "description": "希望可以像其它app一样做到静默收藏，只要点击快捷指令不用打开kepori就能后台静默收藏。\n比如看到想收藏的内容分享复制了链接，设置了轻点背面快捷指令自动识别剪贴板链接，全程不用打开kepori,后台自动静默收藏。",
       "nickname": "一位 Kepori 用户",
       "createdAt": "2026-10-18T11:45:50.000Z",
-      "status": "待评估",
+      "status": "开发中",
       "validity": "有效",
       "duplicateOf": null,
       "reply": "",
