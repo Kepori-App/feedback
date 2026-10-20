@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-70",
+      "category": "suggestion",
+      "title": "希望后续能引入 AI 能力，对内容进行自动归类、打标签(AI 根据固定预设标签库匹配（严格模式）或者自由生成关键词标签，亦或是根据内容自动分到不同的文件夹)，并支持Obsidian LiveSync（Self-hosted LiveSync）自动同步/导出到 Obsidian 知识库中指定文件夹，以便更好地承接个人笔记工作流，实现更高效的知识归档闭环。",
+      "description": "",
+      "nickname": "SylvanRoe",
+      "createdAt": "2026-10-20T14:02:05.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-69",
       "category": "suggestion",
       "title": "现在的编辑笔记内容有点单调，编辑笔记内容格式能不能增加删除线，调整字体大小，字体颜色，高亮颜色，再加上批注功能。",
