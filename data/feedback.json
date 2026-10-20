@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-67",
+      "category": "bug",
+      "title": "有Bug，笔记里面选中任意一段文字，点左下角设置就会卡死崩溃。",
+      "description": "按图片步骤，第1步笔记里面选中任意一段文字，第2步点左下角设置就会卡死崩溃。",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-20T11:03:40.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/a4d41b3b37423eead8714e2a44f4fcd9e3ca329c9b59604c26b759a1c6ae209c.jpg",
+          "mimeType": "image/jpeg",
+          "size": 480607
+        },
+        {
+          "path": "assets/uploads/3d07ffad43c0c302a8af34cf125c95b761f8944827bf58c9c9010008a83f0766.jpg",
+          "mimeType": "image/jpeg",
+          "size": 52388
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-65",
       "category": "suggestion",
       "title": "目前只能收藏链接内容，希望可以收藏别的APP生成分享的内容。就是增加收藏文件的功能，支持多种文件格式分享导入Kepori。",
