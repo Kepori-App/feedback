@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-65",
+      "category": "suggestion",
+      "title": "目前只能收藏链接内容，希望可以收藏别的APP生成分享的内容。就是增加收藏文件的功能，支持多种文件格式分享导入Kepori。",
+      "description": "增加分享图片可以导入kepori，导入时可以ocr识别图片文字还是直接保存到笔记\n使用场景：比如使用deepseek豆包等AI工具生成的图片直接分享导入kepori。\n\n增加分享文本可以导入到kepori，导入时提取文本转为笔记，可以编辑，不编辑就直接保存。\n使用场景：比如使用deepseek豆包等AI工具生成的文本直接分享导入kepori。\n\n同时增加其它格式的文件导入，如Markdown、Html、EPUB、OPML、Word、Pdf等。\n\n增加笔记导出为TXT、Word、EPUB格式。\n\n可以跟其它APP形成互动，别的APP生成的内容可以直接导入Kepori。kepori笔记也可以导出。",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-20T10:33:14.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/b7792061b6a0d7733a1b40e68d94f369e480540e848c6f300160900bfa8c848d.jpg",
+          "mimeType": "image/jpeg",
+          "size": 161262
+        },
+        {
+          "path": "assets/uploads/b77db18e326d73163077dc702a9b1f3516f93e01654ff84e4a54377f39765253.jpg",
+          "mimeType": "image/jpeg",
+          "size": 43884
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-63",
       "category": "suggestion",
       "title": "一切换区就掉会员，很不方便，能不能加个缓存一两周也行，到时候切回去再延长时效",
