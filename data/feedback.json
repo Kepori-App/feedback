@@ -4,6 +4,36 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-69",
+      "category": "suggestion",
+      "title": "现在的编辑笔记内容有点单调，编辑笔记内容格式能不能增加删除线，调整字体大小，字体颜色，高亮颜色，再加上批注功能。",
+      "description": "效果如图",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-20T11:17:19.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/200bdee17af97579e95b645b88604b0a998419cd89588163b5ac9acfe234e4ab.jpg",
+          "mimeType": "image/jpeg",
+          "size": 75515
+        },
+        {
+          "path": "assets/uploads/723f389ba6e61828f8eac57f77b3e74763748495a33125ccb0632eb8e002bfa8.jpg",
+          "mimeType": "image/jpeg",
+          "size": 28353
+        },
+        {
+          "path": "assets/uploads/d16a236be9ee94245b83111c2a1afdf493085e1af00c91ddcc76c2864cdf643d.jpg",
+          "mimeType": "image/jpeg",
+          "size": 81147
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-67",
       "category": "bug",
       "title": "有Bug，笔记里面选中任意一段文字，点左下角设置就会卡死崩溃。",
