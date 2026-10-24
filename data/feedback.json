@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-144",
+      "category": "suggestion",
+      "title": "剪藏下来的内容肯定不是保存下来就万事大吉了的，还要考虑到阅读的合理化设计和易用性。 建议，增加原文内容中，一键翻译的功能，并可随时切换回去或再切换到翻译。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-24T16:46:04.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-142",
       "category": "suggestion",
       "title": "建议：1.解析后保存的原文不可修改，只供阅读。 2.取消下方的段落记录机制，直接改成一个独立的笔记区，叫做想法叫做笔记都可以，就是一个完整的支持富文本编辑的区域，而不是通过点击添加段落去一行一行添加，也不被一段只能写一句话限制。3.重新解析原文不影响已经记录的笔记。 目的和意义在于既保存了原文，又可以在阅读后方便且高效记录自己的想法或留存想添加的附加内容。",
