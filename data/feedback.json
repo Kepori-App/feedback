@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-145",
+      "category": "suggestion",
+      "title": "分享可以支持长图分享，但是只有一个很小的缩略图，还点不进去，甚至还显示得不完整。 建议：1.分享长图功能可点击查看大图预览，并支持双指捏合放大缩小。 2.长图功能支持更换外观，比如除了现有的白底黑字，再增加黑底白字之类的分享外观等。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-24T16:50:02.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-144",
       "category": "suggestion",
       "title": "剪藏下来的内容肯定不是保存下来就万事大吉了的，还要考虑到阅读的合理化设计和易用性。 建议，增加原文内容中，一键翻译的功能，并可随时切换回去或再切换到翻译。",
