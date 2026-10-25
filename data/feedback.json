@@ -4,6 +4,36 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-146",
+      "category": "bug",
+      "title": "icloud 不知道为啥乱了，同步总是失败，尝试过「icloud 切到本机->阻止切换告警」、「各种网络环境尝试重试同步->失败且告警」、「尝试备份本机数据想先卸载 app 后恢复->阻止备份且告警」。已经不知道还有什么办法可以保留下来我的数据了",
+      "description": "只能上传三张图片，其他的图片已经在小红书群中反馈过了。现在升到 1.0.7 最新版本后，依旧未修复。（iphone 15p / IOS 27）",
+      "nickname": "大梁",
+      "createdAt": "2026-10-25T15:38:04.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/f92b0ffbda15d595d6c13b70f2518ab7a355be0d342252df39dbaf173c5d6462.jpg",
+          "mimeType": "image/jpeg",
+          "size": 74768
+        },
+        {
+          "path": "assets/uploads/b8f073482c32fce778e566985870dc5d77f903581b98ab115398b7a89956ecf1.jpg",
+          "mimeType": "image/jpeg",
+          "size": 74751
+        },
+        {
+          "path": "assets/uploads/94e256e4d5131b78fd0c4458e15e18be5fb5b340028555ac14c11daa47244dc7.jpg",
+          "mimeType": "image/jpeg",
+          "size": 103963
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-145",
       "category": "suggestion",
       "title": "分享可以支持长图分享，但是只有一个很小的缩略图，还点不进去，甚至还显示得不完整。 建议：1.分享长图功能可点击查看大图预览，并支持双指捏合放大缩小。 2.长图功能支持更换外观，比如除了现有的白底黑字，再增加黑底白字之类的分享外观等。",
