@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-161",
+      "category": "suggestion",
+      "title": "希望主页日期旁边加一个日历按钮",
+      "description": "打开是可滚动日期，参考qq空间主页点开右侧是可滑动日期看动态那样的效果，能够自己选择直接看某一天保存的内容",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T13:44:53.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-160",
       "category": "other",
       "title": "7.网页端或者macOS客户端是否可以上线，目前cubox是三端互通，方便在pc和手机上切换",
