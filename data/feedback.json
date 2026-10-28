@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-159",
+      "category": "suggestion",
+      "title": "6.微信公众号识别后，首页和点开后显示的是文章作者的名字，不是公众号的名字",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T10:47:32.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/7d2a475d470c5feb055dd0d45194e87d4bc2d8ea75dff579794d038319f0c70d.jpg",
+          "mimeType": "image/jpeg",
+          "size": 379808
+        },
+        {
+          "path": "assets/uploads/e13f364763fe9da86483672f3d16c71e5fdc9a8d27cc27b77e784706b29a618d.jpg",
+          "mimeType": "image/jpeg",
+          "size": 380522
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-158",
       "category": "bug",
       "title": "5.搜索按钮打开后，有一定概率出现键盘没有弹出的页面；这里能否增加点击空白区域返回首页；这个页面增加语音输入；",
