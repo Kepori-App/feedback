@@ -4,6 +4,46 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-156",
+      "category": "suggestion",
+      "title": "3.iOS系统增加引导，在设置中打开允许粘贴按钮，不然可能会每次询问",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T10:44:11.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/af8a1f693375f6787c9205ecbd0feab0f8c42f244d5bebd7dcdc1f0edec9ae64.jpg",
+          "mimeType": "image/jpeg",
+          "size": 102546
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
+      "id": "F-155",
+      "category": "suggestion",
+      "title": "2.首页添加链接的按钮图标有误导性，一开始不知道规则，可否设计成➕号样式",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T10:43:30.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/acf5680a465deb46351f259d872bd6a381c66ceae3d2b0a3b1ad57a02cc9a23b.jpg",
+          "mimeType": "image/jpeg",
+          "size": 219882
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-153",
       "category": "suggestion",
       "title": "打开动画，参考小红书从哪来回哪去，目前都是右侧出现右侧返回，且右侧返回有一丝丝的不跟手，上传的视频是小红书的返回动画",
