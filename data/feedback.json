@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-148",
+      "category": "suggestion",
+      "title": "希望可以增加更多筛选条件，特别是未分组（也就是未加入任何空间）的。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T02:47:50.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-146",
       "category": "bug",
       "title": "icloud 不知道为啥乱了，同步总是失败，尝试过「icloud 切到本机->阻止切换告警」、「各种网络环境尝试重试同步->失败且告警」、「尝试备份本机数据想先卸载 app 后恢复->阻止备份且告警」。已经不知道还有什么办法可以保留下来我的数据了",
