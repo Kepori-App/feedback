@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-150",
+      "category": "suggestion",
+      "title": "希望可以在内容详情页面的图片模块中增加，双指捏合展示所有图片缩略图集合，双指外扩放大图片的功能。 并且在点击某张单图预览的界面中，底下也可以显示出该条帖子所有图片的小缩略图，并且可以手指左右拖动切换当前预览的主图，就像苹果相册点进图片底下缩略图的那种效果。",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-28T02:58:19.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-148",
       "category": "suggestion",
       "title": "希望可以增加更多筛选条件，特别是未分组（也就是未加入任何空间）的。",
