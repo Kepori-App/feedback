@@ -58,7 +58,7 @@ export class GitHubAPI {
       if (batch.length < 100) return items;
     }
   }
-  issues() { return this.pages("/issues?state=all&sort=updated&direction=desc"); }
+  issues() { return this.pages("/issues?state=all&sort=created&direction=asc"); }
   comments(number) { return this.pages(`/issues/${this.number(number)}/comments`); }
   comment(number, body) { return this.request(`/issues/${this.number(number)}/comments`, "POST", { body }); }
   number(value) {

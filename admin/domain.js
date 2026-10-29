@@ -27,7 +27,13 @@ export function groupMembers(records) {
     const email = record.email.normalize("NFKC").trim().toLowerCase();
     if (!groups.has(email)) groups.set(email, { email, records: [], valid: 0, duplicates: 0, issued: false, member: null });
     const group = groups.get(email);
-    if (record.kind === "member") { group.member = record; group.issued = record.issued === true; }
+    if (record.kind === "member") {
+      // Keep the original user issue authoritative when an import created duplicates.
+      if (!group.member || record.issue_number < group.member.issue_number) {
+        group.member = record;
+        group.issued = record.issued === true;
+      }
+    }
     else {
       group.records.push(record);
       if (!record.removed && record.validity === "有效" && !record.duplicate_of) group.valid++;
