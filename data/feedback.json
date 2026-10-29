@@ -247,10 +247,10 @@
       "description": "只能上传三张图片，其他的图片已经在小红书群中反馈过了。现在升到 1.0.7 最新版本后，依旧未修复。（iphone 15p / IOS 27）",
       "nickname": "大梁",
       "createdAt": "2026-10-25T15:38:04.000Z",
-      "status": "待评估",
-      "validity": "待确认",
+      "status": "已采纳",
+      "validity": "有效",
       "duplicateOf": null,
-      "reply": "",
+      "reply": "已确认同步、切回本机和备份同时受阻的现象，将优先排查资料读取与恢复路径。现阶段请保留当前安装和资料，暂不卸载；这条反馈保持未解决。",
       "attachments": [
         {
           "path": "assets/uploads/f92b0ffbda15d595d6c13b70f2518ab7a355be0d342252df39dbaf173c5d6462.jpg",
