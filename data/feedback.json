@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-166",
+      "category": "suggestion",
+      "title": "已编辑这里或许后面可以加个编辑后的时间戳",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-10-30T02:11:56.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/4d27f0fc45bfff1ccfeca7c2539aba563c6362e31e0b577759fb46635ce643ad.jpg",
+          "mimeType": "image/jpeg",
+          "size": 68376
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-165",
       "category": "suggestion",
       "title": "增加评论的收藏",
