@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-179",
+      "category": "suggestion",
+      "title": "希望可以支持解析到的jpeg类别图片进行jxl转码并作为最终版本",
+      "description": "在libjxl,可以对jpeg媒体进行无损可逆转码功能,这能保证大小更小的前提下,获得更好的存储空间效率\njpeg是一种老旧的传统格式,但在转码后能得到大小收益的同时,质量保持不变 \nhttps://jpegxl.info/",
+      "nickname": "3ame",
+      "createdAt": "2026-11-01T17:38:08.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-178",
       "category": "suggestion",
       "title": "希望支持随机排序布局功能,便于每次发现新的思路,而不是固定的排序",
