@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-177",
+      "category": "suggestion",
+      "title": "希望可以像 Eaglecool 工具一样 根据图片主要呈现的颜色筛选不同的媒体",
+      "description": "https://eagle.cool/blog/post/still-manually-scanning-for-the-right-color-eagles-color-search-finds-any-shade-in-half-a-second",
+      "nickname": "3ame",
+      "createdAt": "2026-11-01T01:42:41.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-175",
       "category": "suggestion",
       "title": "希望可以扩展支持更多明确支持的平台 完善不同平台中对于SFW和NSFW的解析面积",
