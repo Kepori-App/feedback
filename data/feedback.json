@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-175",
+      "category": "suggestion",
+      "title": "希望可以扩展支持更多明确支持的平台 完善不同平台中对于SFW和NSFW的解析面积",
+      "description": "例如这些平台\nMisskey\nMastodon\nSharkey\nPixelfed\nPleroma\nAkkoma\nPeerTube\nLoops\nLemmy\nPieFed\nWriteFreely\nBookWyrm\nFriendica\nHubzilla\nGoToSocial\nMbin\nBonfire Social\nIceshrimp\nVernissage\nOwncast\nFunkwhale\nGNU Social\nMisskey.io\nPawoo\nBaraag\nAethy\nFedibird\n\nBluesky\nWhiteWind\nFlashes\nSkylight\nWafrn\nPinksky\nLeaflet\nTangled\nStreamplace\nFrontpage\nBlacksky\n\nPrimal\nDamus\nSnort\nIris\nnoStrudel\nYakiHonne\nHabla\nZap.stream\nWavlake\n\nFarcaster\nLens\nHey\nOrb\nZora\nMinds\nHive\nPeakD\nEcency\nSteemit\nAudius\nMirror\nOdysee\n\nPoipiku\nGALLERIA\nTINAMI\nART street\nXfolio\npictBLand\nNijie\npiapro\nNiconico Seiga\nPrivatter\nPrivatter+\nTaittsuu\nmixi2\nSkeb\nBOOTH\nFantia\nCi-en\nTwitCasting\n\nCara\nArtfol\nItaku\nToyhouse\nPillowfort\nNewgrounds\nFur Affinity\nInkbunny\nWeasyl\nSoFurry\nHentai Foundry\nAnthera\nDeviantArt\nArtStation\nTumblr\nSheezy.Art\nArt Fight\nSketchers United\nUnvale\nCharacterHub\nBehance\nDribbble\nWorld Anvil\nVGen\nPatreon\nKo-fi\nComicFury\nTapas\nWEBTOON\nGlobalComix\nArchive of Our Own\nWattpad\n\nFlickr\n500px\nVSCO\nCosmos\nSavee\nAre.na\nGlass\nVERO\nPinterest\nImgur\nDesignspiration\nLomography\n\nPlurk\nSpaceHey\nDreamwidth\nMicro.blog\nHive Social\nMeWe\nCounterSocial\nNaver Blog\nNaver Cafe\nPostype\nKakaoStory\nDcard\nBahamut\nPTT\nLOFTER\nZCOOL\nHuaban\n涂鸦王国\n米游社\nTapTap\nNGA\n\nDanbooru\nGelbooru\ne621\nYande.re\nKonachan\nSankaku Channel\n\nitch.io\nGame Jolt\nSketchfab\nOpenGameArt\nBlender Artists\nPolycount\nPicarto\nSoundCloud\nBandcamp\nFreesound\nLetterboxd\nLast.fm",
+      "nickname": "3ame",
+      "createdAt": "2026-11-01T01:39:53.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-174",
       "category": "suggestion",
       "title": "比如收藏抖音视频，下载的时候，可以选择清晰度的选项吗",
