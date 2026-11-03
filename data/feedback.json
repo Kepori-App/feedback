@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-180",
+      "category": "bug",
+      "title": "哔哩哔哩分享动态的链接无法解析",
+      "description": "这种类型的链接无法正确解析：\nhttps://t.bilibili.com/1265712774689849365",
+      "nickname": "sodayoo",
+      "createdAt": "2026-11-03T05:17:48.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-179",
       "category": "suggestion",
       "title": "希望可以支持解析到的jpeg类别图片进行jxl转码并作为最终版本",
