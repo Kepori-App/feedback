@@ -4,6 +4,36 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-182",
+      "category": "bug",
+      "title": "小黑盒游戏卡片链接无法解析",
+      "description": "小黑盒文章内的游戏卡片链接无法解析，导致含有游戏链接的文章都会显示部分媒体未保存，希望能改善一下，比如解析成 [游戏名](链接) 也行",
+      "nickname": "sodayoo",
+      "createdAt": "2026-11-03T05:22:41.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/eb29f4dc334d0759aa7617c47e012798c1d4c10b7069899a94231e4323701e7e.jpg",
+          "mimeType": "image/jpeg",
+          "size": 76480
+        },
+        {
+          "path": "assets/uploads/f2acb2a4c71451e8632ec3ace1be2f007b138205c96cebcd163b6b5e4cd7a52b.jpg",
+          "mimeType": "image/jpeg",
+          "size": 128020
+        },
+        {
+          "path": "assets/uploads/eea291e39f22b98140a56e32e8cd7ffeaa708b05d9398454cbd9b520f886dc76.png",
+          "mimeType": "image/png",
+          "size": 1065387
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-180",
       "category": "bug",
       "title": "哔哩哔哩分享动态的链接无法解析",
