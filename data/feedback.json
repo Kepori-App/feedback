@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-183",
+      "category": "suggestion",
+      "title": "佬，有可能加入收藏本地文档这些的功能吗，这样整理会方便一些，不然还要单独找个app放文档 ，又比较散了。也希望能加入本地翻译功能，一些英文帖子或者文件本地翻译后会更加轻松",
+      "description": "",
+      "nickname": "xxx",
+      "createdAt": "2026-11-03T09:21:36.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-182",
       "category": "bug",
       "title": "小黑盒游戏卡片链接无法解析",
