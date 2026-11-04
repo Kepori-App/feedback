@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-190",
+      "category": "bug",
+      "title": "图片显示不完全",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-04T12:36:12.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/1900185a28050b4452a9387317eaf54c4bf510dc98ac518b3f17a264b9c88660.png",
+          "mimeType": "image/png",
+          "size": 2407068
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-189",
       "category": "bug",
       "title": "小红书解析不成功偶尔，会卡死，只能退出后台",
