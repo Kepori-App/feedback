@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-191",
+      "category": "bug",
+      "title": "后台解析失败概率较高，通知显示进度比较笼统",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-04T13:02:52.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-190",
       "category": "bug",
       "title": "图片显示不完全",
