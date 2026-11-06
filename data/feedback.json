@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-199",
+      "category": "suggestion",
+      "title": "同一篇文章从不同渠道或者不同时间收藏了多次，希望能自动识别重复链接，建议增加去重功能",
+      "description": "",
+      "nickname": "tesser",
+      "createdAt": "2026-11-06T10:48:41.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-198",
       "category": "suggestion",
       "title": "建议增加一个数据导出功能，支持将已保存的内容随时导出，保障数据安全，打消用户购买的疑虑",
