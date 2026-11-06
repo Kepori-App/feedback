@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-200",
+      "category": "suggestion",
+      "title": "目前APP默认图标辨识度有限，建议增加多图标选择，提升桌面辨识度，满足个性化需求。",
+      "description": "",
+      "nickname": "Tesser",
+      "createdAt": "2026-11-06T10:58:41.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-199",
       "category": "suggestion",
       "title": "同一篇文章从不同渠道或者不同时间收藏了多次，希望能自动识别重复链接，建议增加去重功能",
