@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-196",
+      "category": "suggestion",
+      "title": "建议增加一个数据导出功能，支持将已保存的内容随时导出，保障数据安全，打消用户购买的疑虑",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-06T10:42:40.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-194",
       "category": "suggestion",
       "title": "对于Apple Music或者图书这类APP可否增加歌词或者文章段落的收藏，可以增加这类内容的分享页面。",
