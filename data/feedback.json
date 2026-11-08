@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-201",
+      "category": "suggestion",
+      "title": "希望支持大众点评",
+      "description": "【招牌杂鱼馆(滨湖区)】\n★★★★☆ 4.2\n¥78/人\n灵山/拈花湾景区 其他中餐\n梅梁路星程酒店隔壁\nhttps://m.dianping.com/shopinfo/H832kSOJDH9xis3j?msource=Appshare2021&utm_source=shop_share&shoptype=10&shopcategoryid=252&cityid=13&isoversea=0\n大众点评的链接",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-08T06:26:56.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-200",
       "category": "suggestion",
       "title": "目前APP默认图标辨识度有限，建议增加多图标选择，提升桌面辨识度，满足个性化需求。",
