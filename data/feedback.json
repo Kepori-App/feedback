@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-207",
+      "category": "suggestion",
+      "title": "在微信里面点开一个视频，点击分享，选其他应用，找不到 Kepori",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-09T15:59:59.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-205",
       "category": "suggestion",
       "title": "在微信里面点开一个视频，然后点击分享，选其他应用的时候，找不到 kepori",
