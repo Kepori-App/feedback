@@ -4,6 +4,31 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-212",
+      "category": "bug",
+      "title": "备份和分享备份闪退",
+      "description": "版本是1.0.8",
+      "nickname": "zukki",
+      "createdAt": "2026-11-14T02:31:34.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/bfddd5c6b02cc5efabc0eea4967d14c183bab775db47d5f0b8386bc21506f3c5.mov",
+          "mimeType": "video/quicktime",
+          "size": 8948022
+        },
+        {
+          "path": "assets/uploads/9a9ce11e280e1b7778b97f438730b919e9bbf65a85e2674af9715b50586d99f4.mov",
+          "mimeType": "video/quicktime",
+          "size": 5366209
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-211",
       "category": "suggestion",
       "title": "筆記文字內容的行距很詭異",
