@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-214",
+      "category": "bug",
+      "title": "长图在kepori里面的表现不太行 放大后不会主动避开上面的遮罩，虽然可以点一下收回上面的页数显示，然后再放大，感觉有点多此一举，建议参考一下小红书和抖音对于长图的处理",
+      "description": "https://yuyrainya.lofter.com/post/4b6b208f_2b65d58fc?incantation=rzFZhs0Pelwp",
+      "nickname": "ivy",
+      "createdAt": "2026-11-16T17:57:45.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/51e5acb39d81210f2128aa6e61234e9c0219bbfb9e59968b685d2535abe65020.webp",
+          "mimeType": "image/webp",
+          "size": 115138
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-212",
       "category": "bug",
       "title": "备份和分享备份闪退",
