@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-219",
+      "category": "suggestion",
+      "title": "希望支持导出Eagle素材包格式",
+      "description": "选择文件夹/多选文件导出为 Eagle 素材包格式（以图片+标签+链接+文本➡️备注的形式打包），方便管理图片类素材，也节省手机容量",
+      "nickname": "sodayoo",
+      "createdAt": "2026-11-17T01:33:16.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-218",
       "category": "suggestion",
       "title": "导入部分优化建议 1️⃣剪藏的时候弹出预览窗口，导入的时候是否支持直接把标签打完，而不是保存了之后又要长按 标签添加 2️⃣小帖子一下就结束了，都还没来得及选保存在哪个文件夹（空间）就自动结束了，又要长按归入，能不能配置一下窗口不要自动消失 竞品是可以选择剪藏哪一部分的，也不一定图片、视频、音频都要保存，可能就只需要帖子，但是现在这个状态是没得选择",
