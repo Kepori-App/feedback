@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-229",
+      "category": "bug",
+      "title": "b站视频没法保存",
+      "description": "",
+      "nickname": "一位 Kepori 用户",
+      "createdAt": "2026-11-21T09:24:38.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/c6d3bcbdbcc7edbce23fba5a7b791d6a71e77e84654fbf4f52fffbcb3e69ca99.jpg",
+          "mimeType": "image/jpeg",
+          "size": 285138
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-227",
       "category": "suggestion",
       "title": "在对未归类的图文进行分类时，点击归入空间后如果选择的空间在很下面，需要划很久，由于保存按钮没冻结，还需要划回最上方保存，另外在选择归入空间时能否将我置顶的空间置于最上方用来方便选择，毕竟置顶的空间一般是最常用的。",
