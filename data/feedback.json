@@ -4,6 +4,20 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-236",
+      "category": "bug",
+      "title": "大众点评作为一个本地生活常用软件，包含非常多推荐信息，很多时候也有收藏需求。但是经过测试发现目前无法正确识别大众点评的链接，这个功能竞品 PicSeed 是支持的，希望开发者可以考虑加入 链接：万象城你让我感觉陌生！这家太火了。。👀 http://dpurl.cn/Dksp2hTz",
+      "description": "在大众点评页面点击分享-选择本软件，发现只能保存链接，无法识别图文",
+      "nickname": "Lucas",
+      "createdAt": "2026-11-28T11:33:40.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-235",
       "category": "bug",
       "title": "操作中不知道为什么会出现下半部分的白屏，系统是ios18.7.4，已经出现有两三次",
