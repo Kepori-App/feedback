@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-238",
+      "category": "bug",
+      "title": "哔哩哔哩视频收藏不稳定。偶发性第一次收藏的时候会失败，点击重试依旧失败，重启软件后成功",
+      "description": "在哔哩哔哩官方客户端选择分享，选择本软件，跳转后发现失败",
+      "nickname": "Lucas",
+      "createdAt": "2026-11-28T11:43:54.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/f5ae3c99deb41eefe8adda214a60e453a2d53592032cb6bb1703dfc16b10d758.png",
+          "mimeType": "image/png",
+          "size": 2832368
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-236",
       "category": "bug",
       "title": "大众点评作为一个本地生活常用软件，包含非常多推荐信息，很多时候也有收藏需求。但是经过测试发现目前无法正确识别大众点评的链接，这个功能竞品 PicSeed 是支持的，希望开发者可以考虑加入 链接：万象城你让我感觉陌生！这家太火了。。👀 http://dpurl.cn/Dksp2hTz",
