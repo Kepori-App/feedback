@@ -4,6 +4,26 @@
   "supportEmail": "jinwandalaohu940@gmail.com",
   "feedback": [
     {
+      "id": "F-239",
+      "category": "bug",
+      "title": "通过分享将 Safari 浏览器中打开的常规信息网页（维基百科）收藏进入软件，出现解析错误，只保留了一张图片",
+      "description": "",
+      "nickname": "Lucas",
+      "createdAt": "2026-11-28T13:00:43.000Z",
+      "status": "待评估",
+      "validity": "待确认",
+      "duplicateOf": null,
+      "reply": "",
+      "attachments": [
+        {
+          "path": "assets/uploads/06bf7da2d53623226f115f104560bbf54ff57b678ba52a90b962c5fec9d43cc1.jpg",
+          "mimeType": "image/jpeg",
+          "size": 82039
+        }
+      ],
+      "attachmentsPending": 0
+    },
+    {
       "id": "F-238",
       "category": "bug",
       "title": "哔哩哔哩视频收藏不稳定。偶发性第一次收藏的时候会失败，点击重试依旧失败，重启软件后成功",
